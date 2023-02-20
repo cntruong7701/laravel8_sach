@@ -1,0 +1,11 @@
+
+
+ul .dropdown-menu li {
+    padding: 4px 15px;
+}
+
+ul.dropdown-menu li a{
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+}

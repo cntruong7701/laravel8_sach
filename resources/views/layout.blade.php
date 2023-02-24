@@ -114,8 +114,105 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    {{-- localStrorage Sách yêu thích --}}
+    <script type="text/javascript">
+
+        show_wishlist();
+
+        function show_wishlist() {
+            if (localStorage.getItem('wishlist_sach') != null) {
+                var data = JSON.parse(localStorage.getItem('wishlist_sach')); 
+
+                data.reverse();
+
+                for (i=0; i<data.length; i++) {
+                    var title = data[i].title;
+                    var img = data[i].img;
+                    var id = data[i].id;
+                    var url = data[i].url;
+                    
+                    $('#yeuthich').append(`
+                        <div class="row mt-2">
+                            <div class="col-md-5">
+                                <img class="img img-responsive card-img-top" with="100%" src="`+img+`" alt="`+title+`"/>
+                            </div>
+                            <div>
+                                <a href="`+url+`"></a>
+                                <p style="color:#666;">`+title+`</p>   
+                            </div>
+                        </div>
+                    `);
+                }
+            }
+
+        }
+        $('.btn-thichsach').click(function () {
+            $('.fa.fa-heart').css('color', '#333');
+            const id = $('.wishlist_id').val();
+            const title = $('.wishlist_title').val();
+            const img = $('.card-img-top').attr('src');
+            const url = $('.wishlist_url').val();
+
+            const item = {
+                'id': id,
+                'title': title,
+                'img': img,
+                'url': url,
+            }
+
+            if (localStorage.getItem('wishlist_sach') == null) {
+                localStorage.setItem('wishlist_sach', '[]');
+            }
+            var old_data = JSON.parse(localStorage.getItem('wishlist_sach'));
+            var matches = $.grep(old_data, function (obj) {
+                return obj.id == id;
+            })
+
+            if (matches.length) {
+                alert('Bạn đã thêm vào mục yêu thích!');
+            } else{
+                if (old_data.length<=10) {
+                    old_data.push(item);
+                } else {
+                    alert('Danh sách yêu thích đã đầy.');
+                }
+
+                $('#yeuthich').append(`
+                    <div class="row mt-2">
+                        <div class="col-md-5">
+                            <img class="img img-responsive card-img-top" with="100%" src="`+img+`" alt="title"/>
+                        </div>
+                        <div>
+                            <a href="`+url+`"></a>
+                            <p style="color:#666;">`+title+`</p>   
+                        </div>
+                    </div>
+                `);
+
+                localStorage.setItem('wishlist_sach', JSON.stringify(old_data));
+                alert('đã thêm vào danh sách yêu thích.');
+            }
+            localStorage.setItem('wishlist_sach', JSON.stringify(old_data));
+        });
+    </script>
+    {{-- end localStrorage Sách yêu thích --}}
+    
+    {{-- Lưu màu vào theme --}}
     <script type="text/javascript">
         $(document).ready(function() {
+            if (localStorage.getItem('switch_color') !== null) {
+                const data = localStorage.getItem('switch_color');
+                const data_obj = JSON.parse(data);
+                $(document.body).addClass(data_obj.class1);
+                $('.album').addClass(data_obj.class2);
+                $('.card-body').addClass(data_obj.class1);
+
+                $('ul.mucluc > li > a').css(('color', '#fff'));
+                $('.sidebar > a').css('color', '#fff');
+
+                $("select option[value = 'den']").attr("selected", "selected");
+            }
             $("#switch_color").change(function() {
                 $(document.body).toggleClass('switch_color');
                 $('.album').toggleClass('switch_color_light');
@@ -123,19 +220,24 @@
                 $('.noidungchuong').addClass('noidung_color');
                 $('ul.mucluc > li > a').css(('color', '#fff'));
                 $('slidebar > a').css('color', '#fff');
+
                 if ($(this).val() == 'den') {
                     var item = {
                         'class1':'switch_color',
-                        'class2':'switch_color_light',
+                        'class2':'switch_color_light'
                     }
-                    locationStorage.setItem('switch_color', JSON.stringify(item));
+                    localStorage.setItem('switch_color', JSON.stringify(item));
                 } else if($(this).val() == 'xam'){
-                    locationStorage.removeItem('switch_color');
-                    $('ul.mucluc > li > a').css('color', '#000');
+                    localStorage.removeItem('switch_color');
+                    $('ul.mucluc > li > a').css('color', '#0a58ca');
                 }
             })
         })
     </script>
+    {{-- end Lưu màu vào theme --}}
+
+
+    {{-- Tìm kiếm  --}}
     <script type="text/javascript">
         $('#keywords').keyup(function() {
             var keywords = $(this).val();
@@ -164,6 +266,10 @@
             $('#search_ajax').fadeOut();
         })
     </script>
+    {{-- End Tìm kiếm  --}}
+
+
+    {{-- Slider --}}
     <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -182,6 +288,9 @@
             }
         })
     </script>
+    {{-- End Slider --}}
+
+    {{-- Select mục lục --}}
     <script>
         $('.select-mucluc').on('change', function() {
             var url = $(this).val();
@@ -198,6 +307,7 @@
             $('.select-mucluc').find('option[value="' + url + '"]').attr("selected", true);
         }
     </script>
+    {{-- End Select mục lục --}}
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0"
         nonce="1zIdhOIp"></script>

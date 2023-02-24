@@ -82,6 +82,26 @@
                                     @endif
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Sách nổi bật</label>
+                                <select class="form-select" name="sachnoibat" id="inputGroupSelect02">
+                                    @if ($book->sach_noibat == 0)
+                                        <option selected value="0">Sách mới</option>
+                                        <option value="1">Sách nổi bật</option>
+                                        <option value="2">Sách xem nhiều</option>
+                                    @else
+                                        @if ($book->sach_noibat == 1)
+                                            <option value="0">Sách mới</option>
+                                            <option selected value="1">Sách nổi bật</option>
+                                            <option value="2">Sách xem nhiều</option>
+                                        @else
+                                            <option value="0">Sách mới</option>
+                                            <option value="1">Sách nổi bật</option>
+                                            <option selected value="2">Sách xem nhiều</option>
+                                        @endif
+                                    @endif
+                                </select>
+                            </div>
                             <button type="submit" name="themsach" class="btn btn-primary">Cập Nhật</button>
                         </form>
                     </div>

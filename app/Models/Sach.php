@@ -16,7 +16,8 @@ class Sach extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'tensach', 'tacgia', 'tomtat', 'kichhoat','slug_sach', 'hinhanh', 'danhmuc_id', 'theloai_id', 'view', 'tinhtrang' ,'create_at', 'updated_at'
+        'tensach', 'tacgia', 'tomtat', 'kichhoat','slug_sach', 'hinhanh', 'danhmuc_id', 'theloai_id', 
+        'view', 'tinhtrang' ,'create_at', 'updated_at', 'sach_noibat'
     ];
     protected $primaryKey = 'id';
     protected $table = 'sach';

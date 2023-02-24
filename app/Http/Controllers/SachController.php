@@ -56,6 +56,7 @@ class SachController extends Controller
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
                 'theloai' => 'required',
+                'sachnoibat' => 'required',
             ],
             [
                 'tenSach.required' => 'Vui lòng nhập tên sách!',
@@ -78,6 +79,7 @@ class SachController extends Controller
         $Sach->kichhoat = $data['kichhoat'];
         $Sach->danhmuc_id = $data['danhmuc'];
         $Sach->tukhoa = $data['tukhoa'];
+        $Sach->sach_noibat = $data['sachnoibat'];
 
         $Sach->created_at = Carbon::now('Asia/Ho_Chi_Minh');//sử dụng ngày format theo muối h của của việt nam
         //them anh vao folder
@@ -141,6 +143,7 @@ class SachController extends Controller
                 'danhmuc' => 'required',
                 'theloai' => 'required',
                 'tukhoa' => 'required',
+                'sachnoibat' => 'required',
             ],
             [
                 'tacgia.required' => 'Vui lòng nhập tên tác giả!',
@@ -159,6 +162,7 @@ class SachController extends Controller
         $Sach->kichhoat = $data['kichhoat'];
         $Sach->danhmuc_id = $data['danhmuc'];
         $Sach->tukhoa = $data['tukhoa'];
+        $Sach->sach_noibat = $data['sachnoibat'];
 
         $Sach->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
 

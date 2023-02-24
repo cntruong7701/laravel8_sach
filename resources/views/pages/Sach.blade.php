@@ -15,7 +15,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="{{ asset('public/uploads/sach/' . $sach->hinhanh) }}" width="200" alt="">
+                    <img class="card-img-top" src="{{ asset('public/uploads/sach/' . $sach->hinhanh) }}" width="200" alt="">
                 </div>
                 <div class="col-md-9">
                     <style type="text/css">
@@ -29,6 +29,13 @@
                             <a target="_blank" href="{{ \URL::current() }}&amp;src=sdkpreparse"
                                 class="fb-xfbml-parse-ignore">Chia sẻ</a>
                         </div>
+
+                        <!----------Lấy Biến Wishlish----------->
+                        <input type="hidden" value="{{$sach->tensach}}" class="wishlist_title">
+                        <input type="hidden" value="{{\URL::current()}}" class="wishlist_url">
+                        <input type="hidden" value="{{$sach->id}}" class="wishlist_id">
+                        <!----------EndLấy Biến Wishlish----------->
+
                         <li>Tên tác phẩm: {{ $sach->tensach }}</li>
                         <li>Ngày đăng: {{ $sach->created_at->diffForHumans() }}</li>
                         <li>Tác giả: {{ $sach->tacgia }}</li>
@@ -48,6 +55,7 @@
                                 <a href="{{ url('xem-mucluc/' . $mucluc_dau->slug_mucluc) }}" class="btn btn-primary mb-2">
                                     Đọc Sách
                                 </a>
+                                <button class="btn btn-danger mb-2 btn-thichsach"><i class="fa fa-heart" aria-hidden="true"></i> Sách Yêu Thích </button>
                             </li>
                             <li>
                                 <a href="{{ url('xem-mucluc/' . $mucluc_cuoi->slug_mucluc) }}" class="btn btn-success">
@@ -156,7 +164,7 @@
             </p>
             <hr>
             <h4>Mục Lục</h4>
-            <ul class="">
+            <ul class="mucluc">
                 @php
                     $chapter = count($mucluc);
                 @endphp
@@ -196,17 +204,8 @@
             </div>
         </div>
         <div class="col-md-3">
-            <h3>Sách hay xem nhiều</h3>
-            <div class="col-md-6">
-                <img src="{{ asset('public/uploads/sach/sach171.jpg') }}" width="200" alt="">
-                <h3>Tess 3</h3>
-                <p><i class="fa fa-eye"> 4020</i></p>
-            </div>
-            <div class="col-md-6">
-                <img src="{{ asset('public/uploads/sach/sach171.jpg') }}" width="200" alt="">
-                <h3>Tess 3</h3>
-                <p><i class="fa fa-eye"> 4020</i></p>
-            </div>
+            <h3 class="title_sach">Sách yêu thích</h3>
+            <div id="yeuthich"></div>
         </div>
     </div>
 @endsection

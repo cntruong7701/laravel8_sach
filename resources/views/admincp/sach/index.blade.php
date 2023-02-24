@@ -26,6 +26,7 @@
                                     <th scope="col">Danh mục</th>
                                     <th scope="col">Thể loại</th>
                                     <th scope="col">Kích Hoạt</th>
+                                    <th scope="col">Nổi Bật</th>
                                     <th scope="col">Ngày Tạo</th>
                                     <th scope="col">Ngày Sửa</th>
                                     <th scope="col">Quản ký</th>
@@ -35,7 +36,8 @@
                                 @foreach ($list_book as $key => $Sach)
                                     <tr>
                                         <th scope="row">{{ $key }}</th>
-                                        <td><img src="{{asset('public/uploads/sach/'.$Sach->hinhanh)}}" height="200" width="200" alt=""></td>
+                                        <td><img src="{{ asset('public/uploads/sach/' . $Sach->hinhanh) }}" height="200"
+                                                width="200" alt=""></td>
                                         <td>{{ $Sach->tensach }}</td>
                                         <td>{{ $Sach->tukhoa }}</td>
                                         <td>{{ $Sach->slug_sach }}</td>
@@ -49,18 +51,28 @@
                                                 <span class="text text-danger">Không Kích Hoạt</span>
                                             @endif
                                         </td>
-                                        <td>{{ $Sach->created_at }} - {{ $Sach->created_at->diffForHumans()}}</td>
+                                        <td>
+                                            @if ($Sach->sach_noibat == 0)
+                                                <span class="text text-success">Sách mới</span>
+                                            @else
+                                                @if ($Sach->sach_noibat == 1)
+                                                    <span class="text text-warning">Sách nổi bật</span>
+                                                @else
+                                                    <span class="text text-danger">Sách xem nhiều</span>
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>{{ $Sach->created_at }} - {{ $Sach->created_at->diffForHumans() }}</td>
                                         <td>
                                             @if ($Sach->updated_at != '')
-                                                {{ $Sach->updated_at }} - {{ $Sach->updated_at->diffForHumans()}}
+                                                {{ $Sach->updated_at }} - {{ $Sach->updated_at->diffForHumans() }}
                                             @endif
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-around">
                                                 <a href="{{ route('sach.edit', [$Sach->id]) }}"
                                                     class="btn btn-primary">Sửa</a>
-                                                <form action="{{ route('sach.destroy', [$Sach->id]) }}"
-                                                    method="POST">
+                                                <form action="{{ route('sach.destroy', [$Sach->id]) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button onclick="return confirm('Bạn có chắc muốn xóa sách này không?')"

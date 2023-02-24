@@ -75,6 +75,14 @@
                                     <option value="1">Không kích hoạt</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Sách nổi bật</label>
+                                <select class="form-select" name="sachnoibat" id="inputGroupSelect02">
+                                    <option value="0">Sách mới</option>
+                                    <option value="1">Sách nổi bật</option>
+                                    <option value="2">Sách xem nhiều</option>
+                                </select>
+                            </div>
                             <button type="submit" name="themsach" class="btn btn-primary">Thêm</button>
                         </form>
                     </div>

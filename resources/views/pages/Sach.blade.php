@@ -15,7 +15,8 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-3">
-                    <img class="card-img-top" src="{{ asset('public/uploads/sach/' . $sach->hinhanh) }}" width="200" alt="">
+                    <img class="card-img-top" src="{{ asset('public/uploads/sach/' . $sach->hinhanh) }}" width="200"
+                        alt="">
                 </div>
                 <div class="col-md-9">
                     <style type="text/css">
@@ -31,9 +32,9 @@
                         </div>
 
                         <!----------Lấy Biến Wishlish----------->
-                        <input type="hidden" value="{{$sach->tensach}}" class="wishlist_title">
-                        <input type="hidden" value="{{\URL::current()}}" class="wishlist_url">
-                        <input type="hidden" value="{{$sach->id}}" class="wishlist_id">
+                        <input type="hidden" value="{{ $sach->tensach }}" class="wishlist_title">
+                        <input type="hidden" value="{{ \URL::current() }}" class="wishlist_url">
+                        <input type="hidden" value="{{ $sach->id }}" class="wishlist_id">
                         <!----------EndLấy Biến Wishlish----------->
 
                         <li>Tên tác phẩm: {{ $sach->tensach }}</li>
@@ -55,7 +56,8 @@
                                 <a href="{{ url('xem-mucluc/' . $mucluc_dau->slug_mucluc) }}" class="btn btn-primary mb-2">
                                     Đọc Sách
                                 </a>
-                                <button class="btn btn-danger mb-2 btn-thichsach"><i class="fa fa-heart" aria-hidden="true"></i> Sách Yêu Thích </button>
+                                <button class="btn btn-danger mb-2 btn-thichsach"><i class="fa fa-heart"
+                                        aria-hidden="true"></i> Sách Yêu Thích </button>
                             </li>
                             <li>
                                 <a href="{{ url('xem-mucluc/' . $mucluc_cuoi->slug_mucluc) }}" class="btn btn-success">
@@ -202,10 +204,43 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
         <div class="col-md-3">
             <h3 class="title_sach">Sách yêu thích</h3>
             <div id="yeuthich"></div>
+            <h4>Sách Nổi Bật</h4>
+            <div class="row">
+                @foreach ($sachnoibat as $key => $noibat)
+                    <div class="row mt-2">
+                        <div class="col-md-5">
+                            <img src="{{ asset('public/uploads/sach/' . $noibat->hinhanh) }}" width="100%" alt="">
+                        </div>
+                        <div class="col-md-7 sidebar">
+                            <a href="{{ url('doc-sach/' . $noibat->slug_sach) }}">
+                                <p>{{ $noibat->tensach }}</p>
+                                <p><i class="fa fa-eye">4020</i></p>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <h4>Sách Xem Nhiều</h4>
+            <div class="row">
+                @foreach ($sachxemnhieu as $key => $xemnhieu)
+                    <div class="row mt-2">
+                        <div class="col-md-5">
+                            <img src="{{ asset('public/uploads/sach/' . $xemnhieu->hinhanh) }}" width="100%" alt="">
+                        </div>
+                        <div class="col-md-7 sidebar">
+                            <a href="{{ url('doc-sach/' . $xemnhieu->slug_sach) }}">
+                                <p>{{ $xemnhieu->tensach }}</p>
+                                <p><i class="fa fa-eye">4020</i></p>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

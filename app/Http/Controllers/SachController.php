@@ -203,4 +203,13 @@ class SachController extends Controller
         Sach::find($id)->delete();
         return redirect()->back()->with('status', 'Xóa thành công');
     }
+
+    public function sachnoibat(Request $request)
+    {
+        $data = $request->all();
+        $sach = Sach::find($data['sach_id']);
+        
+        $sach->sach_noibat = $data['sachnoibat'];
+        $sach->save();
+    }
 }

@@ -79,7 +79,8 @@
             @yield('content')
         </main>
     </div>
-    <script src="//cdn.ckeditor.com/4.20.1/full/ckeditor.js"></script>
+    <script type="text/javascript" src="//cdn.ckeditor.com/4.20.1/full/ckeditor.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="text/javascript">
         CKEDITOR.replace('noidung_mucluc');
     </script>
@@ -116,6 +117,36 @@
                     //In slug ra textbox có id “slug”
                 document.getElementById('convert_slug').value = slug;
             }
+    </script>
+    <script type="text/javascript">
+        $('.sachnoibat').change(function (){
+            const sachnoibat = $(this).val();
+            const sach_id = $(this).data('sach_id');
+            
+            var _token = $('input[name="_token"]').val();
+
+            if (sachnoibat == 0) {
+                var thongbao = 'Thay đổi sách mới thành công!';
+            } else if(sachnoibat == 1){
+                var thongbao = 'Thay đổi sách nổi bật thành công!';
+            } else{
+                var thongbao = 'Thay đổi sách xem nhiều thành công!';
+            }
+
+                $.ajax({
+                    url: "{{ url('/sachnoibat') }}",
+                    method: "POST",
+                    data: {
+                        sachnoibat: sachnoibat,
+                        sach_id: sach_id,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        // $('#thongbao').html('<span class="text text-alert">'+thongbao+'</span>');
+                        alert(thongbao);
+                    }
+                });
+        })
     </script>
 </body>
 </html>

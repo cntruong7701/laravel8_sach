@@ -30,6 +30,35 @@ class IndexController extends Controller
         echo $output;
     }
 
+    public function tabs_danhmuc(Request $request)
+    {
+        $data = $request->all();
+        $output = '';
+        $sach = Sach::with('danhmuc', 'theloai')->where('danhmuc_id', $data['danhmuc_id'])->get();
+        foreach ($sach as $key => $value) {
+            $output.='
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="'.url('public/uploads/sach/' . $value->hinhanh).'" width="400" alt="">
+                    <div class="card-body">
+                        <h5>'.$value->tensach.'</h5>
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href=""
+                                    class="btn btn-sm btn-outline-secondary">Đọc</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye">
+                                        4020</i></a>
+                            </div>
+                            <small class="text-muted">9 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+        }
+        echo $output;
+    }
+
     public function home()
     {
         $theloai = TheLoai::orderBy('id', 'DESC')->get();
@@ -83,6 +112,9 @@ class IndexController extends Controller
 
         $sach = Sach::with('danhmuc', 'theloai')->where('slug_sach', $slug)->where('kichhoat','0')->first();
 
+        $sachnoibat = Sach::where('sach_noibat', 1)->take(10)->get();
+        $sachxemnhieu = Sach::where('sach_noibat', 2)->take(10)->get();
+
         $mucluc = MucLuc::with('sach')->orderBy('id', 'ASC')->where('sach_id', $sach->id)->get();
 
         $mucluc_dau = MucLuc::with('sach')->orderBy('id', 'ASC')->where('sach_id', $sach->id)->first();
@@ -91,7 +123,7 @@ class IndexController extends Controller
 
         $cungdanhmuc = Sach::with('danhmuc', 'theloai')->where('danhmuc_id', $sach->danhmuc->id)->whereNotIn('id', [$sach->id])->get();
 
-        return view('pages.Sach')->with(compact('danhmuc', 'sach', 'mucluc', 'cungdanhmuc', 'mucluc_dau', 'mucluc_cuoi', 'theloai'));
+        return view('pages.Sach')->with(compact('danhmuc', 'sach', 'mucluc', 'cungdanhmuc', 'mucluc_dau', 'mucluc_cuoi', 'theloai', 'sachnoibat', 'sachxemnhieu'));
     }
 
     public function xemmucluc($slug){

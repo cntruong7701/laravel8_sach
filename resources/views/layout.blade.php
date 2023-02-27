@@ -115,6 +115,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+    {{-- tabs danh muc --}}
+    <script type="text/javascript">
+        $('.tabs_danhmuc').click(function(){
+            const danhmuc_id = $(this).data('danhmuc_id');
+            var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: "{{ url('/tabs-danhmuc') }}",
+                    method: "POST",
+                    data: {
+                        _token: _token,
+                        danhmuc_id: danhmuc_id,
+                    },
+                    success: function(data) {
+                        $('#tabs_danhmuc').html(data);
+                    }
+                });
+        })
+    </script>
+    {{-- end tabs danh muc --}}
+
     {{-- localStrorage Sách yêu thích --}}
     <script type="text/javascript">
 
@@ -183,9 +204,10 @@
                         <div class="col-md-5">
                             <img class="img img-responsive card-img-top" with="100%" src="`+img+`" alt="title"/>
                         </div>
-                        <div>
-                            <a href="`+url+`"></a>
-                            <p style="color:#666;">`+title+`</p>   
+                        <div class="col-md-7">
+                            <a href="`+url+`">
+                                <p>`+title+`</p>     
+                            </a>
                         </div>
                     </div>
                 `);

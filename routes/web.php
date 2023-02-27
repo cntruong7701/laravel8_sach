@@ -30,6 +30,8 @@ Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 
 Route::POST('/tim-kiem', [IndexController::class, 'timkiem']);
 Route::post('/timkiem-ajax', [IndexController::class, 'timkiem_ajax']);
+Route::post('/sachnoibat', [SachController::class, 'sachnoibat']);
+Route::post('/tabs-danhmuc', [IndexController::class, 'tabs_danhmuc']);
 
 Auth::routes();
 

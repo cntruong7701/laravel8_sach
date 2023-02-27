@@ -7,8 +7,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Liệt kê sách</div>
-
                     <div class="card-body">
+                        <div id="thongbao"></div>
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -51,14 +51,38 @@
                                                 <span class="text text-danger">Không Kích Hoạt</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td width="15%">
                                             @if ($Sach->sach_noibat == 0)
-                                                <span class="text text-success">Sách mới</span>
+                                                <form action="">
+                                                    @csrf
+                                                    <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                        id="inputGroupSelect02">
+                                                        <option selected value="0">Sách mới</option>
+                                                        <option value="1">Sách nổi bật</option>
+                                                        <option value="2">Sách xem nhiều</option>
+                                                    </select>
+                                                </form>
                                             @else
                                                 @if ($Sach->sach_noibat == 1)
-                                                    <span class="text text-warning">Sách nổi bật</span>
+                                                    <form action="">
+                                                        @csrf
+                                                        <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                            id="inputGroupSelect02">
+                                                            <option value="0">Sách mới</option>
+                                                            <option selected value="1">Sách nổi bật</option>
+                                                            <option value="2">Sách xem nhiều</option>
+                                                        </select>
+                                                    </form>
                                                 @else
-                                                    <span class="text text-danger">Sách xem nhiều</span>
+                                                    <form action="">
+                                                        @csrf
+                                                        <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                            id="inputGroupSelect02">
+                                                            <option value="0">Sách mới</option>
+                                                            <option value="1">Sách nổi bật</option>
+                                                            <option selected value="2">Sách xem nhiều</option>
+                                                        </select>
+                                                    </form>
                                                 @endif
                                             @endif
                                         </td>

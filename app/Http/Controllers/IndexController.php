@@ -34,27 +34,12 @@ class IndexController extends Controller
     {
         $data = $request->all();
         $output = '';
-        $sach = Sach::with('danhmuc', 'theloai')->where('danhmuc_id', $data['danhmuc_id'])->get();
+        $sach = Sach::with('danhmuc', 'theloai')->where('danhmuc_id', $data['danhmuc_id'])->take(30)->get();
         foreach ($sach as $key => $value) {
             $output.='
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img src="'.url('public/uploads/sach/' . $value->hinhanh).'" width="400" alt="">
-                    <div class="card-body">
-                        <h5>'.$value->tensach.'</h5>
-                        <p class="card-text"></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href=""
-                                    class="btn btn-sm btn-outline-secondary">Đọc</a>
-                                <a href="" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye">
-                                        4020</i></a>
-                            </div>
-                            <small class="text-muted">9 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-            </div>';
+            <ul class="mucluctab_sach">
+                <li><a target="_blank" href="'.url('doc-sach/'.$value->slug_sach).'" class="text-decoration-none">'.$value->tensach.'</a></li>
+            </ul>';
         }
         echo $output;
     }

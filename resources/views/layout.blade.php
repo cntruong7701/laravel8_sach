@@ -16,6 +16,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style type="text/css">
+        ul.mucluctab_sach {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        ul.mucluctab_sach li a{
+            color: #000;
+            text-transform: uppercase;
+        }
         .switch_color {
             background: #181818;
             color: #fff;
@@ -29,7 +39,6 @@
         .noidung_color {
             color: #000;
         }
-
     </style>
 </head>
 
@@ -83,18 +92,19 @@
                                 <div class="d-flex">
                                     <input class="form-control me-2" name="tukhoa" id="keywords" type="search"
                                         placeholder="Tìm kiếm tác giả..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
                                 </div>
                                 <div id="search_ajax"></div>
-                                <select class="custom-select mr-sm-2" name="" id="switch_color">
-                                    <option value="xam">Xám</option>
-                                    <option value="den">Đen</option>
-                                </select>
+                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <select class="form-select mr-sm-2" name="" style="width:80px;" id="switch_color">
+                <option value="xam">Xám</option>
+                <option value="den">Đen</option>
+            </select>
         </nav>
         <!-----------------slider----------------->
         @yield('slider')
@@ -117,50 +127,50 @@
 
     {{-- tabs danh muc --}}
     <script type="text/javascript">
-        $('.tabs_danhmuc').click(function(){
+        $('.tabs_danhmuc').click(function() {
             const danhmuc_id = $(this).data('danhmuc_id');
             var _token = $('input[name="_token"]').val();
 
-                $.ajax({
-                    url: "{{ url('/tabs-danhmuc') }}",
-                    method: "POST",
-                    data: {
-                        _token: _token,
-                        danhmuc_id: danhmuc_id,
-                    },
-                    success: function(data) {
-                        $('#tabs_danhmuc').html(data);
-                    }
-                });
+            $.ajax({
+                url: "{{ url('/tabs-danhmuc') }}",
+                method: "POST",
+                data: {
+                    _token: _token,
+                    danhmuc_id: danhmuc_id,
+                },
+                success: function(data) {
+                    $('#tabs_danhmuc').html(data);
+                }
+            });
         })
     </script>
     {{-- end tabs danh muc --}}
 
     {{-- localStrorage Sách yêu thích --}}
     <script type="text/javascript">
-
         show_wishlist();
 
         function show_wishlist() {
             if (localStorage.getItem('wishlist_sach') != null) {
-                var data = JSON.parse(localStorage.getItem('wishlist_sach')); 
+                var data = JSON.parse(localStorage.getItem('wishlist_sach'));
 
                 data.reverse();
 
-                for (i=0; i<data.length; i++) {
+                for (i = 0; i < data.length; i++) {
                     var title = data[i].title;
                     var img = data[i].img;
                     var id = data[i].id;
                     var url = data[i].url;
-                    
+
                     $('#yeuthich').append(`
                         <div class="row mt-2">
                             <div class="col-md-5">
-                                <img class="img img-responsive card-img-top" with="100%" src="`+img+`" alt="`+title+`"/>
+                                <img class="img img-responsive card-img-top" with="100%" src="` + img + `" alt="` +
+                        title + `"/>
                             </div>
                             <div>
-                                <a href="`+url+`"></a>
-                                <p style="color:#666;">`+title+`</p>   
+                                <a href="` + url + `"></a>
+                                <p style="color:#666;">` + title + `</p>   
                             </div>
                         </div>
                     `);
@@ -168,7 +178,7 @@
             }
 
         }
-        $('.btn-thichsach').click(function () {
+        $('.btn-thichsach').click(function() {
             $('.fa.fa-heart').css('color', '#333');
             const id = $('.wishlist_id').val();
             const title = $('.wishlist_title').val();
@@ -186,14 +196,14 @@
                 localStorage.setItem('wishlist_sach', '[]');
             }
             var old_data = JSON.parse(localStorage.getItem('wishlist_sach'));
-            var matches = $.grep(old_data, function (obj) {
+            var matches = $.grep(old_data, function(obj) {
                 return obj.id == id;
             })
 
             if (matches.length) {
                 alert('Bạn đã thêm vào mục yêu thích!');
-            } else{
-                if (old_data.length<=10) {
+            } else {
+                if (old_data.length <= 10) {
                     old_data.push(item);
                 } else {
                     alert('Danh sách yêu thích đã đầy.');
@@ -202,11 +212,11 @@
                 $('#yeuthich').append(`
                     <div class="row mt-2">
                         <div class="col-md-5">
-                            <img class="img img-responsive card-img-top" with="100%" src="`+img+`" alt="title"/>
+                            <img class="img img-responsive card-img-top" with="100%" src="` + img + `" alt="title"/>
                         </div>
                         <div class="col-md-7">
-                            <a href="`+url+`">
-                                <p>`+title+`</p>     
+                            <a href="` + url + `">
+                                <p>` + title + `</p>     
                             </a>
                         </div>
                     </div>
@@ -219,7 +229,7 @@
         });
     </script>
     {{-- end localStrorage Sách yêu thích --}}
-    
+
     {{-- Lưu màu vào theme --}}
     <script type="text/javascript">
         $(document).ready(function() {
@@ -245,11 +255,11 @@
 
                 if ($(this).val() == 'den') {
                     var item = {
-                        'class1':'switch_color',
-                        'class2':'switch_color_light'
+                        'class1': 'switch_color',
+                        'class2': 'switch_color_light'
                     }
                     localStorage.setItem('switch_color', JSON.stringify(item));
-                } else if($(this).val() == 'xam'){
+                } else if ($(this).val() == 'xam') {
                     localStorage.removeItem('switch_color');
                     $('ul.mucluc > li > a').css('color', '#0a58ca');
                 }

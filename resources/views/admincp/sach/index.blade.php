@@ -41,7 +41,12 @@
                                         <td>{{ $Sach->tensach }}</td>
                                         <td>{{ $Sach->tukhoa }}</td>
                                         <td>{{ $Sach->slug_sach }}</td>
-                                        <td>{{ $Sach->tomtat }}</td>
+                                        <td>
+                                            @php
+                                                $tomtat = substr($Sach->tomtat,0,200)
+                                            @endphp
+                                            {!! $tomtat !!}
+                                        </td>
                                         <td>{{ $Sach->danhmuc->tenDM }}</td>
                                         <td>{{ $Sach->theloai->tentheloai }}</td>
                                         <td>

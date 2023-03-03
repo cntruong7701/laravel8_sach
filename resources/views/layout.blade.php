@@ -8,6 +8,7 @@
     <title>Book</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sach.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -92,7 +93,7 @@
                                 <div class="d-flex">
                                     <input class="form-control me-2" name="tukhoa" id="keywords" type="search"
                                         placeholder="Tìm kiếm tác giả..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <button style="width: 118px;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                                 </div>
                                 <div id="search_ajax"></div>
                                 
@@ -110,16 +111,14 @@
         @yield('slider')
         <!-----------------new book----------------->
         @yield('content')
-        <footer class="text-muted py-5">
-            <div class="container">
-                <p class="float-end mb-1">
-                    <a href="#">Back to top</a>
-                </p>
-                <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-                <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                        href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+        <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2020 Copyright:
+              <a class="text-dark" href="#">Cao Nhật Trường</a>
             </div>
-        </footer>
+            <!-- Copyright -->
+          </footer>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>

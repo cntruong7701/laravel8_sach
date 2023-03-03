@@ -49,6 +49,16 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sách
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{route('sach.create')}}">Thêm Truyện</a></li>
+                            <li><a class="dropdown-item" href="{{route('sach.index')}}">Liệt kê Truyện</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Mục Lục
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

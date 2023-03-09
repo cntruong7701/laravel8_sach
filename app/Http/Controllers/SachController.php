@@ -56,6 +56,7 @@ class SachController extends Controller
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
                 'theloai' => 'required',
+                'tukhoa' => 'required',
                 'sachnoibat' => 'required',
             ],
             [

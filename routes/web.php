@@ -8,6 +8,7 @@ use App\Http\Controllers\MucLucController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\TruyenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('/danhmuc', DanhMucController::class);
 Route::resource('/sach', SachController::class);
+Route::resource('/truyen', TruyenController::class);
 Route::resource('/mucluc', MucLucController::class);
 Route::resource('/theloai', TheLoaiController::class);
 Route::resource('/information', InfoController::class);

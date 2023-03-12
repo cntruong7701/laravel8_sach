@@ -120,7 +120,7 @@ class TruyenController extends Controller
         //
         $theloai = TheLoai::orderBy('id', 'DESC')->get();
         $truyen = Truyen::find($id);
-        //dd($sach);
+        //dd($truyen);
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         return view('admincp.truyen.edit')->with(compact('truyen', 'danhmuc', 'theloai'));
     }
@@ -137,10 +137,8 @@ class TruyenController extends Controller
         //
         $data = $request->validate(
             [
-                'tentruyen' => 'required|unique:truyen|max:255',
-                'slug_truyen' => 'required|unique:truyen|max:255',
-                'hinhanh' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,
-                    min_height=100,max_width=1000,max_height=1000',
+                'tentruyen' => 'required|max:255',
+                'slug_truyen' => 'required|max:255',
                 'tomtat' => 'required',
                 'tacgia' => 'required',
                 'kichhoat' => 'required',
@@ -151,17 +149,13 @@ class TruyenController extends Controller
             ],
             [
                 'tentruyen.required' => 'Vui lòng nhập tên truyện!',
-                'tentruyen.unique' => 'Tên truyện đã tồn tại, Vui lòng nhập tên truyện khác!',
-                'slug_truyen.unique' => 'Slug truyện đã tồn tại, Vui lòng nhập slug truyện khác!',
                 'slug_truyen.required' => 'Vui lòng nhập slug truyện!',
                 'tomtat.required' => 'Vui lòng nhập mô tả truyện!',
                 'tacgia.required' => 'Vui lòng nhập tên tác giả!',
-                'hinhanh.required' => 'Vui lòng hình ảnh truyện!',
-                'hinhanh.dimensions' => 'Kích thước hình ảnh quá lớn!',
             ]
         );
         // dd($data);
-        $truyen = Truyen::find();
+        $truyen = Truyen::find($id);
         $truyen->tentruyen = $data['tentruyen'];
         $truyen->tacgia = $data['tacgia'];
         $truyen->slug_truyen = $data['slug_truyen'];
@@ -174,7 +168,7 @@ class TruyenController extends Controller
 
         $truyen->updated_at = Carbon::now('Asia/Ho_Chi_Minh');//sử dụng ngày format theo muối h của của việt nam
         //them anh vao folder
-        $get_image = $data['hinhanh'];
+        $get_image = $request->hinhanh;
         if ($get_image) {
             $path = 'public/uploads/truyen/' .$truyen->hinhanh;
             if (file_exists($path)) {
@@ -186,11 +180,11 @@ class TruyenController extends Controller
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move($path,$new_image);
 
-            $Sach->hinhanh = $new_image;
+            $truyen->hinhanh = $new_image;
         }
 
         $truyen->save();
-        return redirect()->back()->with('status', 'Thêm thành công');
+        return redirect()->back()->with('status', 'Cập nhật thành công');
     }
 
     /**

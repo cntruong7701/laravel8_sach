@@ -29,7 +29,7 @@
                     @foreach ($sach as $key => $value)
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img src="{{ asset('public/uploads/sach/' . $value->hinhanh) }}" width="400"
+                                <img src="{{ asset('public/uploads/sach/' . $value->hinhanh) }}" class="w-100"
                                     alt="">
                                 <div class="card-body">
                                     <h5>{{ $value->tensach }}</h5>

@@ -47,8 +47,10 @@
     <div class="container">
         <!-----------------menu----------------->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">WebBook.com</a>
+            <div class="container-fluid bg-white">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img width="100" src="http://webtruyensach.com/laravel8/laravel-book/public/uploads/logo/book-logo.png" alt="logo">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +94,7 @@
                                 @csrf
                                 <div class="d-flex">
                                     <input class="form-control me-2" name="tukhoa" id="keywords" type="search"
-                                        placeholder="Tìm kiếm tác giả..." aria-label="Search">
+                                        placeholder="Tìm kiếm tác phẩm..." aria-label="Search">
                                     <button style="width: 118px;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                                 </div>
                                 <div id="search_ajax"></div>

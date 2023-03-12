@@ -19,4 +19,9 @@ class TheLoai extends Model
     {
         return $this->hasMany('App\Models\Sach');
     }
+
+    public function truyen()
+    {
+        return $this->hasMany('App\Models\Truyen');
+    }
 }

@@ -8,8 +8,9 @@
             <form>
                 @csrf
                 <li class="nav-item" role="presentation">
-                    <button data-danhmuc_id="{{ $tab_danhmuc->id }}" class="nav-link tabs_danhmuc" id="{{ $tab_danhmuc->id }}" data-bs-toggle="tab"
-                        data-bs-target="#{{ $tab_danhmuc->slug_danhmuc }}" type="button" role="tab" aria-controls="{{ $tab_danhmuc->slug_danhmuc }}"
+                    <button data-danhmuc_id="{{ $tab_danhmuc->id }}" class="nav-link tabs_danhmuc" id="{{ $tab_danhmuc->id }}"
+                        data-bs-toggle="tab" data-bs-target="#{{ $tab_danhmuc->slug_danhmuc }}" type="button" role="tab"
+                        aria-controls="{{ $tab_danhmuc->slug_danhmuc }}"
                         aria-selected="true">{{ $tab_danhmuc->tenDM }}</button>
                 </li>
             </form>
@@ -18,9 +19,11 @@
     <div id="tabs_danhmuc"></div>
 
     <h3 class="title">Lọc Truyện Sách</h3>
-    @foreach ((range('A', 'Z')) as $char)
-        <a href="{{url('/kytu/'.$char)}}" class=""> {{ $char }} </a> 
+    @foreach (range('A', 'Z') as $char)
+        <a class="kytu" href="{{url('/kytu/'.$char)}}" class=""> {{ $char }} </a> 
     @endforeach
+
+
 
     <h3>Mới Cập Nhật</h3>
     <div class="album py-5 bg-light">
@@ -49,7 +52,8 @@
                 @foreach ($truyen as $key => $value)
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="{{ asset('public/uploads/truyen/' . $value->hinhanh) }}" class="w-100" alt="">
+                            <img src="{{ asset('public/uploads/truyen/' . $value->hinhanh) }}" class="w-100"
+                                alt="">
                             <div class="card-body">
                                 <h5>{{ $value->tentruyen }}</h5>
                                 <p class="card-text">{{ $value->tomtat }}</p>

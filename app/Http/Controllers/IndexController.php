@@ -13,10 +13,27 @@ use App\Models\Info;
 class IndexController extends Controller
 {
     //
-    public function kytu(Resquest $request, $kytu)
+    public function kytu(Request $request, $kytu)
     {
-        # code...
+
+        // $meta_desc = 'Tìm kiếm tags';
+        // $meta_keywords = 'Lọc truyện sách theo ký tự';
+        // $url_canonical = \URL::current();
+        // $og_image = url('public/upload/logo' .$info->logo);
+        // $link_icon = url('public/upload/logo' .$info->logo);
+
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
+
+        $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
+
+        $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+        $sach = Sach::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('tensach','LIKE', $kytu . '%')->where('kichhoat', '0')->get();
+
+        $truyen = Truyen::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('kichhoat', '0')->where('tentruyen','LIKE', $kytu . '%')->get();
+        
+        return view('pages.kytu')->with(compact('danhmuc','sach', 'truyen', 'theloai', 'slide_sach'));
     }
+
     public function timkiem_ajax(Request $request)
     {
         $data = $request->all();

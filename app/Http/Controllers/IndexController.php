@@ -13,6 +13,10 @@ use App\Models\Info;
 class IndexController extends Controller
 {
     //
+    public function kytu(Resquest $request, $kytu)
+    {
+        # code...
+    }
     public function timkiem_ajax(Request $request)
     {
         $data = $request->all();

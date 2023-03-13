@@ -23,10 +23,11 @@
             margin: 12px 0;
         }
 
-        ul.mucluctab_sach li a{
+        ul.mucluctab_sach li a {
             color: #000;
             text-transform: uppercase;
         }
+
         .switch_color {
             background: #181818;
             color: #fff;
@@ -49,7 +50,9 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid bg-white">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img width="100" src="http://webtruyensach.com/laravel8/laravel-book/public/uploads/logo/book-logo.png" alt="logo">
+                    <img width="100"
+                        src="http://webtruyensach.com/laravel8/laravel-book/public/uploads/logo/book-logo.png"
+                        alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -95,10 +98,11 @@
                                 <div class="d-flex">
                                     <input class="form-control me-2" name="tukhoa" id="keywords" type="search"
                                         placeholder="Tìm kiếm tác phẩm..." aria-label="Search">
-                                    <button style="width: 118px;" class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+                                    <button style="width: 118px;" class="btn btn-outline-success" type="submit">Tìm
+                                        kiếm</button>
                                 </div>
                                 <div id="search_ajax"></div>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -109,6 +113,10 @@
                 <option value="den">Đen</option>
             </select>
         </nav>
+
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="addthis_inline_share_toolbox"></div>
+
         <!-----------------slider----------------->
         @yield('slider')
         <!-----------------new book----------------->
@@ -116,14 +124,18 @@
         <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-              © 2020 Copyright:
-              <a class="text-dark" href="#">Cao Nhật Trường</a>
+                © 2020 Copyright:
+                <a class="text-dark" href="#">Cao Nhật Trường</a>
             </div>
             <!-- Copyright -->
-          </footer>
+        </footer>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-640eb87a913bc15e"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     {{-- tabs danh muc --}}

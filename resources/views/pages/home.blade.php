@@ -16,7 +16,13 @@
         @endforeach
     </ul>
     <div id="tabs_danhmuc"></div>
-    <h3>Sách mới cập nhật</h3>
+
+    <h3 class="title">Lọc Truyện Sách</h3>
+    @foreach ((range('A', 'Z')) as $char)
+        <a href="{{url('/kytu/'.$char)}}" class=""> {{ $char }} </a> 
+    @endforeach
+
+    <h3>Mới Cập Nhật</h3>
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

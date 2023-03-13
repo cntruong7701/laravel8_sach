@@ -27,6 +27,7 @@ Route::get('/doc-sach/{slug}', [IndexController::class, 'docsach']);
 Route::get('/xem-mucluc/{slug}', [IndexController::class, 'xemmucluc']);
 Route::get('/the-loai/{slug}', [IndexController::class, 'theloai']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
+Route::get('/kytu/{kytu}', [IndexController::class, 'kytu']);
 
 
 Route::POST('/tim-kiem', [IndexController::class, 'timkiem']);

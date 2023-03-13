@@ -30,6 +30,10 @@
                             <a target="_blank" href="{{ \URL::current() }}&amp;src=sdkpreparse"
                                 class="fb-xfbml-parse-ignore">Chia sẻ</a>
                         </div>
+                        <script src="https://apis.google.com/js/platform.js"></script>
+
+                        <div class="g-ytsubscribe" data-channelid="UCpvaBbBo6texpg-fDjcTx1g" data-layout="default"
+                            data-theme="dark" data-count="hidden"></div>
 
                         <!----------Lấy Biến Wishlish----------->
                         <input type="hidden" value="{{ $sach->tensach }}" class="wishlist_title">
@@ -214,7 +218,8 @@
                 @foreach ($sachnoibat as $key => $noibat)
                     <div class="row mt-2">
                         <div class="col-md-5">
-                            <img src="{{ asset('public/uploads/sach/' . $noibat->hinhanh) }}" width="100%" alt="">
+                            <img src="{{ asset('public/uploads/sach/' . $noibat->hinhanh) }}" width="100%"
+                                alt="">
                         </div>
                         <div class="col-md-7 sidebar">
                             <a href="{{ url('doc-sach/' . $noibat->slug_sach) }}">
@@ -230,7 +235,8 @@
                 @foreach ($sachxemnhieu as $key => $xemnhieu)
                     <div class="row mt-2">
                         <div class="col-md-5">
-                            <img src="{{ asset('public/uploads/sach/' . $xemnhieu->hinhanh) }}" width="100%" alt="">
+                            <img src="{{ asset('public/uploads/sach/' . $xemnhieu->hinhanh) }}" width="100%"
+                                alt="">
                         </div>
                         <div class="col-md-7 sidebar">
                             <a href="{{ url('doc-sach/' . $xemnhieu->slug_sach) }}">

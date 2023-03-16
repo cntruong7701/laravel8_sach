@@ -27,9 +27,34 @@ class IndexController extends Controller
         $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
 
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
-        $sach = Sach::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('tensach','LIKE', $kytu . '%')->where('kichhoat', '0')->get();
+        
 
-        $truyen = Truyen::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('kichhoat', '0')->where('tentruyen','LIKE', $kytu . '%')->get();
+        if ($kytu == '0-9') {
+            $rand = [0,1,2,3,4,5,6,7,8,9];
+
+            $sach = Sach::with('danhmuc','theloai')->where(
+                function ($query) use($rand)
+                {
+                    for ($i=0; $i <= 9; $i++) { 
+                        $query->orwhere('tensach','LIKE', $rand[$i] . '%');
+                    }
+                }
+            )->paginate(12);
+
+            $truyen = Truyen::with('danhmuc','theloai')->where(
+                function ($query) use($rand)
+                {
+                    for ($i=0; $i <= 9; $i++) { 
+                        $query->orwhere('tentruyen','LIKE', $rand[$i] . '%');
+                    }
+                }
+            )->paginate(12);
+        } else {
+            $sach = Sach::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('tensach','LIKE', $kytu . '%')->where('kichhoat', '0')->get();
+            $truyen = Truyen::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('kichhoat', '0')->where('tentruyen','LIKE', $kytu . '%')->get();
+        }
+        
+        
         
         return view('pages.kytu')->with(compact('danhmuc','sach', 'truyen', 'theloai', 'slide_sach'));
     }

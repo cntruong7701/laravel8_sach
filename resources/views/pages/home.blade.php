@@ -18,12 +18,29 @@
     </ul>
     <div id="tabs_danhmuc"></div>
 
+    <style type="text/css">
+        a.kytu {
+            font-weight: bold;
+            padding: 0px 13px;
+            margin: 5px;
+            color: black;
+            background: burlywood;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a.kytu:hover {
+            color: blue;
+            background-color: antiquewhite;
+        }
+    </style>
     <h3 class="title">Lọc Truyện Sách</h3>
-    @foreach (range('A', 'Z') as $char)
-        <a class="kytu" href="{{url('/kytu/'.$char)}}" class=""> {{ $char }} </a> 
-    @endforeach
-
-
+    <div class="my-4">
+        <a class="kytu" href="{{ url('/kytu/0-9') }}" class="">0-9</a>
+        @foreach (range('A', 'Z') as $char)
+            <a class="kytu" href="{{ url('/kytu/' . $char) }}" class=""> {{ $char }} </a>
+        @endforeach
+    </div>
 
     <h3>Mới Cập Nhật</h3>
     <div class="album py-5 bg-light">

@@ -49,26 +49,30 @@
                                 <label for="exampleInputEmail1" class="form-label">Tóm tắt Truyện</label>
                                 <textarea class="form-control" name="tomtat" rows="5" style="resize: none;">{{$truyen->tomtat}}</textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Danh mục Truyện</label>
-                                <select class="form-select" name="danhmuc" id="inputGroupSelect02">
-                                    @foreach($danhmuc as $key => $muc)
-                                        <option {{$muc->id == $truyen->danhmuc_id ? 'selected' : ''}} value="{{$muc->id}}">{{$muc->tenDM}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="mb-3 form-group">
+                                <label for="exampleInputEmail1" class="form-label">Danh mục Truyện: </label><br>
+                                @foreach ($danhmuc as $key => $muc)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="danhmuc[]" type="checkbox" id="danhmuc_{{$muc->id}}"
+                                            value="{{$muc->id}}">
+                                        <label class="form-check-label" for="danhmuc_{{$muc->id}}">{{ $muc->tenDM }}</label>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
-                                <select class="form-select" name="theloai" id="inputGroupSelect02">
-                                    @foreach($theloai as $key => $the)
-                                        <option {{$the->id == $truyen->theloai_id ? 'selected' : ''}} value="{{$the->id}}">{{$the->tentheloai}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="mb-3 form-group">
+                                <label for="exampleInputEmail1" class="form-label">Thể Loại: </label><br>
+                                @foreach ($theloai as $key => $the)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="theloai[]" type="checkbox" id="theloai_{{$the->id}}"
+                                            value="{{$the->id}}">
+                                        <label class="form-check-label" for="theloai_{{$the->id}}">{{$the->tentheloai}}</label>
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Hình ảnh</label>
                                 <input type="file" class="form-control-file" value="{{old('hinhanh')}}" name="hinhanh">
-                                <img src="{{asset('public/uploads/sach/'.$truyen->hinhanh)}}" height="200" width="200" alt="">
+                                <img src="{{asset('public/uploads/truyen/'.$truyen->hinhanh)}}" height="200" width="200" alt="">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt Truyện</label>

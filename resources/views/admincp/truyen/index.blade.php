@@ -47,8 +47,16 @@
                                             @endphp
                                             {!! $tomtat !!}
                                         </td>
-                                        <td>{{ $truyen->danhmuc->tenDM }}</td>
-                                        <td>{{ $truyen->theloai->tentheloai }}</td>
+                                        <td>
+                                            @foreach ($thuocdanh as $key => $muc)
+                                                {{ $muc->danhmuc_id }}
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($thuocloai as $key => $loai)
+                                                {{ $loai->tentheloai }}
+                                            @endforeach
+                                        </td>
                                         <td>
                                             @if ($truyen->kichhoat == 0)
                                                 <span class="text text-success">Kích Hoạt</span>

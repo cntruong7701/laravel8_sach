@@ -31,4 +31,14 @@ class Truyen extends Model
     {
         return $this->belongsTo('App\Models\TheLoai', 'theloai_id', 'id');
     }
+
+    public function thuocnhieudanhmuc()
+    {
+        return $this->belongsToMany(DanhMuc::class,'thuocdanh', 'truyen_id', 'danhmuc_id');
+    }
+
+    public function thuocnhieutheloai()
+    {
+        return $this->belongsToMany(TheLoai::class,'thuocloai', 'truyen_id', 'theloai_id');
+    }
 }

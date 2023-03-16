@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Models\Truyen;
 use App\Models\DanhMuc;
 use App\Models\TheLoai;
+use App\Models\ThuocLoai;
+use App\Models\ThuocDanh;
 
 class TruyenController extends Controller
 {
@@ -20,8 +22,10 @@ class TruyenController extends Controller
         //
 
         $list_truyen = Truyen::with('danhmuc', 'theloai')->orderBy('id','DESC')->get();
-        //dd($truyen);
-        return view('admincp.truyen.index')->with(compact('list_truyen'));
+        $thuocdanh = ThuocDanh::where('id','truyen_id')->get();
+        $thuocloai = ThuocLoai::where('id','truyen_id')->get();
+        //dd($thuocdanh);
+        return view('admincp.truyen.index')->with(compact('list_truyen','thuocdanh','thuocloai'));
     }
 
     /**
@@ -71,15 +75,23 @@ class TruyenController extends Controller
                 'hinhanh.dimensions' => 'Kích thước hình ảnh quá lớn!',
             ]
         );
-        // dd($data);
+        $data = $request->all();
+        // dd($data['theloai']);
         $truyen = new Truyen();
         $truyen->tentruyen = $data['tentruyen'];
         $truyen->tacgia = $data['tacgia'];
         $truyen->slug_truyen = $data['slug_truyen'];
-        $truyen->theloai_id = $data['theloai'];
+
+        foreach ($data['danhmuc'] as $key => $danh) {
+            $truyen->danhmuc_id = $danh[0];
+        }
+
+        foreach ($data['theloai'] as $key => $the) {
+            $truyen->theloai_id = $the[0];
+        }
+
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
-        $truyen->danhmuc_id = $data['danhmuc'];
         $truyen->tukhoa = $data['tukhoa'];
         $truyen->truyen_noibat = $data['truyennoibat'];
 
@@ -95,6 +107,10 @@ class TruyenController extends Controller
         $truyen->hinhanh = $new_image;
 
         $truyen->save();
+
+        $truyen->thuocnhieudanhmuc()->attach($data['danhmuc']);
+        $truyen->thuocnhieutheloai()->attach($data['theloai']);
+
         return redirect()->back()->with('status', 'Thêm thành công');
     }
 
@@ -159,10 +175,17 @@ class TruyenController extends Controller
         $truyen->tentruyen = $data['tentruyen'];
         $truyen->tacgia = $data['tacgia'];
         $truyen->slug_truyen = $data['slug_truyen'];
-        $truyen->theloai_id = $data['theloai'];
+
+        foreach ($data['danhmuc'] as $key => $danh) {
+            $truyen->danhmuc_id = $danh[0];
+        }
+
+        foreach ($data['theloai'] as $key => $the) {
+            $truyen->theloai_id = $the[0];
+        }
+
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
-        $truyen->danhmuc_id = $data['danhmuc'];
         $truyen->tukhoa = $data['tukhoa'];
         $truyen->truyen_noibat = $data['truyennoibat'];
 
@@ -182,6 +205,9 @@ class TruyenController extends Controller
 
             $truyen->hinhanh = $new_image;
         }
+
+        $truyen->thuocnhieudanhmuc()->attach($data['danhmuc']);
+        $truyen->thuocnhieutheloai()->attach($data['theloai']);
 
         $truyen->save();
         return redirect()->back()->with('status', 'Cập nhật thành công');

@@ -26,47 +26,53 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Tên Truyện</label>
-                                <input type="text" class="form-control" value="{{old('tentruyen')}}" name="tentruyen" onkeyup="ChangeToSlug();" id="slug"
-                                    aria-describedby="emailHelp" placeholder="tên Truyện ...">
+                                <input type="text" class="form-control" value="{{ old('tentruyen') }}" name="tentruyen"
+                                    onkeyup="ChangeToSlug();" id="slug" aria-describedby="emailHelp"
+                                    placeholder="tên Truyện ...">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Tác giả</label>
-                                <input type="text" class="form-control" value="{{old('tacgia')}}" name="tacgia"
+                                <input type="text" class="form-control" value="{{ old('tacgia') }}" name="tacgia"
                                     aria-describedby="emailHelp" placeholder="tên tác giả...">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Từ khóa</label>
-                                <input type="text" class="form-control" value="{{old('tukhoa')}}" name="tukhoa"
+                                <input type="text" class="form-control" value="{{ old('tukhoa') }}" name="tukhoa"
                                     aria-describedby="emailHelp" placeholder="từ khóa...">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Slug Truyện</label>
-                                <input type="text" class="form-control" value="{{old('slug_truyen')}}" name="slug_truyen" id="convert_slug"
-                                    aria-describedby="emailHelp" placeholder="tên Truyện ...">
+                                <input type="text" class="form-control" value="{{ old('slug_truyen') }}"
+                                    name="slug_truyen" id="convert_slug" aria-describedby="emailHelp"
+                                    placeholder="tên Truyện ...">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 form-group">
                                 <label for="exampleInputEmail1" class="form-label">Tóm tắt Truyện</label>
                                 <textarea class="form-control" name="tomtat" rows="5" style="resize: none;"></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Danh mục Truyện</label>
-                                <select class="form-select" name="danhmuc" id="inputGroupSelect02">
-                                    @foreach($danhmuc as $key => $muc)
-                                        <option value="{{$muc->id}}">{{$muc->tenDM}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="mb-3 form-group">
+                                <label for="exampleInputEmail1" class="form-label">Danh mục Truyện: </label><br>
+                                @foreach ($danhmuc as $key => $muc)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="danhmuc[]" type="checkbox" id="danhmuc_{{$muc->id}}"
+                                            value="{{$muc->id}}">
+                                        <label class="form-check-label" for="danhmuc_{{$muc->id}}">{{ $muc->tenDM }}</label>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
-                                <select class="form-select" name="theloai" id="inputGroupSelect02">
-                                    @foreach($theloai as $key => $the)
-                                        <option value="{{$the->id}}">{{$the->tentheloai}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="mb-3 form-group">
+                                <label for="exampleInputEmail1" class="form-label">Thể Loại: </label><br>
+                                @foreach ($theloai as $key => $the)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="theloai[]" type="checkbox" id="theloai_{{$the->id}}"
+                                            value="{{$the->id}}">
+                                        <label class="form-check-label" for="theloai_{{$the->id}}">{{$the->tentheloai}}</label>
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Hình ảnh</label>
-                                <input type="file" class="form-control-file" value="{{old('hinhanh')}}" name="hinhanh">
+                                <input type="file" class="form-control-file" value="{{ old('hinhanh') }}" name="hinhanh">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt Truyện</label>

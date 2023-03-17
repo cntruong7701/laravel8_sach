@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\TruyenController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,6 @@ Route::resource('/truyen', TruyenController::class);
 Route::resource('/mucluc', MucLucController::class);
 Route::resource('/theloai', TheLoaiController::class);
 Route::resource('/information', InfoController::class);
+
+
+Route::resource('/user', UserController::class);

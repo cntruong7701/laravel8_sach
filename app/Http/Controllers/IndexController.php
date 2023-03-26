@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DanhMuc;
 use App\Models\Sach;
-use App\Models\Truyen;
 use App\Models\MucLuc;
 use App\Models\TheLoai;
 use App\Models\Info;
@@ -41,22 +40,21 @@ class IndexController extends Controller
                 }
             )->paginate(12);
 
-            $truyen = Truyen::with('danhmuc','theloai')->where(
+            $sach = Sach::with('danhmuc','theloai')->where(
                 function ($query) use($rand)
                 {
                     for ($i=0; $i <= 9; $i++) { 
-                        $query->orwhere('tentruyen','LIKE', $rand[$i] . '%');
+                        $query->orwhere('tensach','LIKE', $rand[$i] . '%');
                     }
                 }
             )->paginate(12);
         } else {
             $sach = Sach::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('tensach','LIKE', $kytu . '%')->where('kichhoat', '0')->get();
-            $truyen = Truyen::with('danhmuc','theloai')->orderBy('id', 'DESC')->where('kichhoat', '0')->where('tentruyen','LIKE', $kytu . '%')->get();
         }
         
         
         
-        return view('pages.kytu')->with(compact('danhmuc','sach', 'truyen', 'theloai', 'slide_sach'));
+        return view('pages.kytu')->with(compact('danhmuc','sach', 'theloai', 'slide_sach'));
     }
 
     public function timkiem_ajax(Request $request)
@@ -100,8 +98,7 @@ class IndexController extends Controller
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
         $sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->get();
 
-        $truyen = Truyen::orderBy('id', 'DESC')->where('kichhoat', '0')->get();
-        return view('pages.home')->with(compact('danhmuc','sach', 'truyen', 'theloai', 'slide_sach'));
+        return view('pages.home')->with(compact('danhmuc','sach', 'theloai', 'slide_sach'));
     }
     
     public function danhmuc($slug)

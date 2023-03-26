@@ -38,13 +38,33 @@ Route::post('/tabs-danhmuc', [IndexController::class, 'tabs_danhmuc']);
 
 Auth::routes();
 
+
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::resource('/user', UserController::class);
+    Route::get('phan-vaitro/{id}',[UserController::class, 'phanvaitro']);
+    Route::get('phan-quyen/{id}',[UserController::class, 'phanquyen']);
+
+    Route::post('inset_roles/{id}',[UserController::class, 'inset_roles']);
+    Route::post('inset_permission/{id}',[UserController::class, 'inset_permission']);
+    Route::post('inset_permission',[UserController::class, 'inset_per_permission']);
+    
+    Route::resource('/theloai', TheLoaiController::class);
+    
+
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::resource('/danhmuc', DanhMucController::class);
+    Route::resource('/sach', SachController::class);
+    Route::resource('/mucluc', MucLucController::class);
+    Route::resource('/information', InfoController::class);
+    
+    
+});
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('/danhmuc', DanhMucController::class);
-Route::resource('/sach', SachController::class);
-Route::resource('/truyen', TruyenController::class);
-Route::resource('/mucluc', MucLucController::class);
-Route::resource('/theloai', TheLoaiController::class);
-Route::resource('/information', InfoController::class);
 
 
-Route::resource('/user', UserController::class);
+

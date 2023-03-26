@@ -62,19 +62,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    @foreach ($truyen as $key => $tr)
-                        <tr>
-                            <td><a target="_blank" href="#">{{ $tr->tentruyen }}</a></td>
-                            <td>
-                                <img src="{{ asset('public/uploads/truyen/' . $tr->hinhanh) }}" width="80"
-                                    height="80">
-                            </td>
-                            <td>{{ $tr->danhmuc->tenDM }}</td>
-                            <td>{{ $tr->theloai->tentheloai }}</td>
-                            <td>{{ $tr->view }}</td>
-                            <td><a target="_blank" href="#">Đọc</a></td>
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
             {{-- {{ $truyen->onEachSide(1)->links('pagination-bootstrap-5')}} --}}

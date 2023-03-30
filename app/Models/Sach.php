@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DanhMuc;
 
 class Sach extends Model
 {
@@ -35,5 +36,10 @@ class Sach extends Model
     public function theloai()
     {
         return $this->belongsTo('App\Models\TheLoai', 'theloai_id', 'id');
+    }
+
+    public function thuocnhieudanhmuc()
+    {
+        return $this->belongsToMany(DanhMuc::class, 'thuocdanh', 'sach_id', 'danhmuc_id');
     }
 }

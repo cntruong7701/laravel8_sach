@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ThuocDanh extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [
-        'danhmuc_id', 'truyen_id'
+        'danhmuc_id', 'sach_id'
     ];
 
     protected $primaryKey = 'id';

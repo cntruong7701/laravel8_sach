@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\DanhMuc;
 use App\Models\Sach;
 use App\Models\TheLoai;
+use App\Models\Thuocdanh;
 
 class SachController extends Controller
 {
@@ -82,6 +83,11 @@ class SachController extends Controller
         $Sach->tukhoa = $data['tukhoa'];
         $Sach->sach_noibat = $data['sachnoibat'];
 
+        //lấy ra danh mục và gắn vào mảng
+        foreach ($data['danhmuc'] as $key => $danh) {
+            $Sach->danhmuc_id = $danh[0];
+        }
+
         $Sach->created_at = Carbon::now('Asia/Ho_Chi_Minh');//sử dụng ngày format theo muối h của của việt nam
         //them anh vao folder
         $get_image = $data['hinhanh'];
@@ -94,6 +100,7 @@ class SachController extends Controller
         $Sach->hinhanh = $new_image;
 
         $Sach->save();
+        $Sach->thuocnhieudanhmuc()->attach($data['danhmuc']);
         return redirect()->back()->with('status', 'Thêm thành công');
     }
 

@@ -84,9 +84,9 @@ class SachController extends Controller
         $Sach->sach_noibat = $data['sachnoibat'];
 
         //lấy ra danh mục và gắn vào mảng
-        foreach ($data['danhmuc'] as $key => $danh) {
-            $Sach->danhmuc_id = $danh[0];
-        }
+        // foreach ($data['danhmuc'] as $key => $danh) {
+        //     $Sach->danhmuc_id = $danh[0];
+        // }
 
         $Sach->created_at = Carbon::now('Asia/Ho_Chi_Minh');//sử dụng ngày format theo muối h của của việt nam
         //them anh vao folder
@@ -100,7 +100,7 @@ class SachController extends Controller
         $Sach->hinhanh = $new_image;
 
         $Sach->save();
-        $Sach->thuocnhieudanhmuc()->attach($data['danhmuc']);
+        //$Sach->thuocnhieudanhmuc()->attach($data['danhmuc']);
         return redirect()->back()->with('status', 'Thêm thành công');
     }
 

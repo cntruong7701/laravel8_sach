@@ -51,17 +51,17 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Danh mục sách:</label><br>
-                                {{-- <select class="form-select" name="danhmuc" id="inputGroupSelect02">
-                                    
+                                <select class="form-select" name="danhmuc" id="inputGroupSelect02">
+                                    @foreach ($danhmuc as $key=>$muc)
                                         <option value="{{ $muc->id }}">{{ $muc->tenDM }}</option>
-                                   
-                                </select> --}}
-                                @foreach ($danhmuc as $key => $muc)
+                                    @endforeach
+                                </select>
+                                {{-- @foreach ($danhmuc as $key => $muc)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="danhmuc[]" id="danhmuc_{{ $muc->id }}" value="{{ $muc->id }}">
                                     <label class="form-check-label" for="danhmuc_{{ $muc->id }}">{{ $muc->tenDM }}</label>
                                 </div>
-                                @endforeach
+                                @endforeach --}}
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Thể Loại</label>

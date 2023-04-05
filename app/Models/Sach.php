@@ -38,8 +38,8 @@ class Sach extends Model
         return $this->belongsTo('App\Models\TheLoai', 'theloai_id', 'id');
     }
 
-    public function thuocnhieudanhmuc()
-    {
-        return $this->belongsToMany(DanhMuc::class, 'thuocdanh', 'sach_id', 'danhmuc_id');
-    }
+    // public function thuocnhieudanhmuc()
+    // {
+    //     return $this->belongsToMany(DanhMuc::class, 'thuocdanh', 'sach_id', 'danhmuc_id');
+    // }
 }

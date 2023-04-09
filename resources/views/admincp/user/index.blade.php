@@ -22,7 +22,6 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Password</th>
                                     <th scope="col">Vai Trò(ROle)</th>
-                                    <th scope="col">Quyền(Permission)</th>
                                     <th scope="col">Quản Lý</th>
                                 </tr>
                             </thead>
@@ -38,17 +37,17 @@
                                                 {{ $role->name }}
                                             @endforeach
                                         </th>
-                                        <th scope="row">
+                                        {{-- <th scope="row">
                                             @foreach ($role->permissions as $key => $permission)
                                                 <h5><span class="badge bg-danger">{{ $permission->name }}</span></h5>
                                             @endforeach
-                                        </th>
+                                        </th> --}}
                                         <th scope="row">
                                             @role('admin')
                                                 <a class="btn btn-success" href="{{ url('phan-vaitro/' . $value->id) }}">Phân Vai
                                                     Trò</a>
-                                                <a class="btn btn-danger" href="{{ url('phan-quyen/' . $value->id) }}">Phân
-                                                    Quyền</a>
+                                                {{-- <a class="btn btn-danger" href="{{ url('phan-quyen/' . $value->id) }}">Phân
+                                                    Quyền</a> --}}
                                             @endrole
                                         </th>
                                     </tr>

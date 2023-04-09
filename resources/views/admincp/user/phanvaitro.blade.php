@@ -31,6 +31,19 @@
                     </form>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <form method="POST" action="{{ url('inset_role') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Tên Vai Trò</label>
+                            <input type="text" class="form-control" value="{{ old('role') }}" name="role" aria-describedby="emailHelp"
+                                placeholder="Tên vai trò ...">
+                        </div>
+                        <input type="submit" name="insetper" value="Thêm Vai Trò" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

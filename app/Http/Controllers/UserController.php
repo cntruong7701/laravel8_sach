@@ -140,6 +140,15 @@ class UserController extends Controller
         return redirect()->back()->with('status', 'thêm vai trò thành công');
     }
 
+    public function inset_per_role(Request $request)
+    {
+        $data = $request->all();
+        $role = new Role;
+        $role->name = $data['role'];
+        $role->save();
+        return redirect()->back()->with('status', 'thêm vai trò thành công');
+    }
+
     
 
     public function phanquyen($id)

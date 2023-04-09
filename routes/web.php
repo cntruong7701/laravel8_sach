@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('inset_roles/{id}',[UserController::class, 'inset_roles']);
     Route::post('inset_permission/{id}',[UserController::class, 'inset_permission']);
     Route::post('inset_permission',[UserController::class, 'inset_per_permission']);
+    Route::post('inset_role/',[UserController::class, 'inset_per_role']);
     
     Route::resource('/theloai', TheLoaiController::class);
     

@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('inset_permission',[UserController::class, 'inset_per_permission']);
     Route::post('inset_role/',[UserController::class, 'inset_per_role']);
     
-    Route::resource('/theloai', TheLoaiController::class);
+    
     
 
 });
@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/sach', SachController::class);
     Route::resource('/mucluc', MucLucController::class);
     Route::resource('/information', InfoController::class);
+    Route::resource('/theloai', TheLoaiController::class);
     
     
 });

@@ -4,7 +4,7 @@
     @include('layouts.nav')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Thể Loại</div>
                     @if ($errors->any())
@@ -41,7 +41,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt Thể Loại</label>
-                                <select class="form-select" name="kichhoat" id="inputGroupSelect02">
+                                <select class="form-select form-control" name="kichhoat" id="inputGroupSelect02">
                                     <option value="0">Kích hoạt</option>
                                     <option value="1">Không kích hoạt</option>
                                 </select>

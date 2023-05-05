@@ -4,7 +4,7 @@
     @include('layouts.nav')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Thêm sách</div>
                     @if ($errors->any())
@@ -51,7 +51,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Danh mục sách</label>
-                                <select class="form-select" name="danhmuc" id="inputGroupSelect02">
+                                <select class="form-select form-control" name="danhmuc" id="inputGroupSelect02">
                                     @foreach($danhmuc as $key => $muc)
                                         <option {{$muc->id == $book->danhmuc_id ? 'selected' : ''}} value="{{$muc->id}}">{{$muc->tenDM}}</option>
                                     @endforeach
@@ -59,7 +59,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
-                                <select class="form-select" name="theloai" id="inputGroupSelect02">
+                                <select class="form-select form-control" name="theloai" id="inputGroupSelect02">
                                     @foreach($theloai as $key => $the)
                                         <option {{$the->id == $book->theloai_id ? 'selected' : ''}} value="{{$the->id}}">{{$the->tentheloai}}</option>
                                     @endforeach
@@ -72,7 +72,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt sách</label>
-                                <select class="form-select" name="kichhoat" id="inputGroupSelect02">
+                                <select class="form-select form-control" name="kichhoat" id="inputGroupSelect02">
                                     @if ($book->kichhoat == 0)
                                         <option selected value="0">Kích hoạt</option>
                                         <option value="1">Không kích hoạt</option>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Sách nổi bật</label>
-                                <select class="form-select" name="sachnoibat" id="inputGroupSelect02">
+                                <select class="form-select form-control" name="sachnoibat" id="inputGroupSelect02">
                                     @if ($book->sach_noibat == 0)
                                         <option selected value="0">Sách mới</option>
                                         <option value="1">Sách nổi bật</option>

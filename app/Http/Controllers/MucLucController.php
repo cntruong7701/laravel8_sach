@@ -17,8 +17,9 @@ class MucLucController extends Controller
     {
         //
         $mucluc = MucLuc::with('sach')->orderBy('id','DESC')->get();
+        $sach = Sach::orderBy('id','DESC')->get();
         //dd($mucluc);
-        return view('admincp.mucluc.index')->with(compact('mucluc'));
+        return view('admincp.mucluc.index')->with(compact('mucluc','sach'));
     }
 
     /**

@@ -4,7 +4,7 @@
     @include('layouts.nav')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Cập Nhật Mục Lục</div>
                     @if ($errors->any())
@@ -46,7 +46,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Thuộc sách</label>
-                                <select class="form-select" name="sach_id" id="inputGroupSelect02">
+                                <select class="form-control" name="sach_id" id="inputGroupSelect02">
                                     @foreach($sach as $key => $muc)
                                         <option {{$mucluc->sach_id==$muc->id ? 'selected' : ''}} value="{{$muc->id}}">{{$muc->tensach}}</option>
                                     @endforeach
@@ -54,7 +54,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt Mục Lục</label>
-                                <select class="form-select" name="kichhoat" id="inputGroupSelect02">
+                                <select class="form-control" name="kichhoat" id="inputGroupSelect02">
                                     @if ($mucluc->kichhoat == 0)
                                         <option selected value="0">Kích hoạt</option>
                                         <option value="1">Không kích hoạt</option>

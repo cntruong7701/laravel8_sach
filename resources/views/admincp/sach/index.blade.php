@@ -21,7 +21,7 @@
                                     <th scope="col">Hình ảnh</th>
                                     <th scope="col">Tên Sách</th>
                                     <th scope="col">Từ khóa</th>
-                                    <th scope="col">Slug Sách</th>
+                                    {{-- <th scope="col">Slug Sách</th> --}}
                                     <th scope="col">Tóm tắt</th>
                                     <th scope="col">Danh mục</th>
                                     <th scope="col">Thể loại</th>
@@ -36,16 +36,16 @@
                                 @foreach ($list_book as $key => $Sach)
                                     <tr>
                                         <th scope="row">{{ $key }}</th>
-                                        <td><img src="{{ asset('public/uploads/sach/' . $Sach->hinhanh) }}" height="200"
-                                                width="200" alt=""></td>
-                                        <td>{{ $Sach->tensach }}</td>
-                                        <td>{{ $Sach->tukhoa }}</td>
-                                        <td>{{ $Sach->slug_sach }}</td>
+                                        <td><img src="{{ asset('public/uploads/sach/' . $Sach->hinhanh) }}" height="100"
+                                                width="100" alt=""></td>
                                         <td>
-                                            @php
-                                                $tomtat = substr($Sach->tomtat,0,200)
-                                            @endphp
-                                            {!! $tomtat !!}
+                                            {{-- {{ $Sach->tensach }} --}}
+                                            {{ substr($Sach->tensach, 1, 30) }}...
+                                        </td>
+                                        <td>{{ substr($Sach->tukhoa, 0, 30) }}...</td>
+                                        {{-- <td>{{ $Sach->slug_sach }}</td> --}}
+                                        <td>
+                                            {{ substr($Sach->tomtat, 1, 30) }}...
                                         </td>
                                         <td>{{ $Sach->danhmuc->tenDM }}</td>
                                         <td>{{ $Sach->theloai->tentheloai }}</td>
@@ -60,7 +60,7 @@
                                             @if ($Sach->sach_noibat == 0)
                                                 <form action="">
                                                     @csrf
-                                                    <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                    <select class="form-select form-control sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
                                                         id="inputGroupSelect02">
                                                         <option selected value="0">Sách mới</option>
                                                         <option value="1">Sách nổi bật</option>
@@ -71,7 +71,7 @@
                                                 @if ($Sach->sach_noibat == 1)
                                                     <form action="">
                                                         @csrf
-                                                        <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                        <select class="form-select form-control sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
                                                             id="inputGroupSelect02">
                                                             <option value="0">Sách mới</option>
                                                             <option selected value="1">Sách nổi bật</option>
@@ -81,7 +81,7 @@
                                                 @else
                                                     <form action="">
                                                         @csrf
-                                                        <select class="form-select sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
+                                                        <select class="form-select form-control sachnoibat" data-sach_id="{{$Sach->id}}" name="sachnoibat"
                                                             id="inputGroupSelect02">
                                                             <option value="0">Sách mới</option>
                                                             <option value="1">Sách nổi bật</option>

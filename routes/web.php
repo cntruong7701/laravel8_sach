@@ -29,10 +29,12 @@ Route::get('/xem-mucluc/{slug}', [IndexController::class, 'xemmucluc']);
 Route::get('/the-loai/{slug}', [IndexController::class, 'theloai']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 Route::get('/kytu/{kytu}', [IndexController::class, 'kytu']);
+// //tim kiếm
+Route::get('/tim-kiem', [IndexController::class, 'search'])->name('tim-kiem');
 
 
-Route::post('/tim-kiem', [IndexController::class, 'timkiem']);
-Route::post('/timkiem-ajax', [IndexController::class, 'timkiem_ajax']);
+// Route::post('/tim-kiem', [IndexController::class, 'timkiem']);
+// Route::post('/timkiem-ajax', [IndexController::class, 'timkiem_ajax']);
 Route::post('/sachnoibat', [SachController::class, 'sachnoibat']);
 Route::post('/tabs-danhmuc', [IndexController::class, 'tabs_danhmuc']);
 

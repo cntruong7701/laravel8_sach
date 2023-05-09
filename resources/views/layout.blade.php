@@ -8,6 +8,7 @@
     <title>Book</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sach.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
@@ -17,30 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style type="text/css">
-        ul.mucluctab_sach {
-            list-style: none;
-            padding: 0;
-            margin: 12px 0;
-        }
 
-        ul.mucluctab_sach li a {
-            color: #000;
-            text-transform: uppercase;
-        }
-
-        .switch_color {
-            background: #181818;
-            color: #fff;
-        }
-
-        .switch_color_light {
-            background: #181818 !important;
-            color: #333;
-        }
-
-        .noidung_color {
-            color: #000;
-        }
     </style>
 </head>
 
@@ -93,25 +71,26 @@
                     </ul>
                     <div class="row">
                         <div class="col-md-12">
-                            <form autocomplete="off" action="{{ url('tim-kiem') }}" method="POST">
-                                @csrf
+                            <form autocomplete="off" action="{{ url('tim-kiem') }}" method="get">
                                 <div class="d-flex">
                                     <input class="form-control me-2" name="tukhoa" id="keywords" type="search"
                                         placeholder="Tìm kiếm tác phẩm..." aria-label="Search">
-                                    <button style="width: 118px;" class="btn btn-outline-success" type="submit">Tìm
-                                        kiếm</button>
+                                    <button style="width: 118px;" class="btn btn-outline-success" type="submit">
+                                        Tìm kiếm
+                                    </button>
                                 </div>
-                                <div id="search_ajax"></div>
-
                             </form>
+                            <ul class="list-group search-wrap" id="result" style="display: none;">
+
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <select class="form-select mr-sm-2" name="" style="width:80px;" id="switch_color">
+            {{-- <select class="form-select mr-sm-2" name="" style="width:80px;" id="switch_color">
                 <option value="xam">Xám</option>
                 <option value="den">Đen</option>
-            </select>
+            </select> --}}
         </nav>
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -181,9 +160,8 @@
                                 <img class="img img-responsive card-img-top" with="100%" src="` + img + `" alt="` +
                         title + `"/>
                             </div>
-                            <div>
-                                <a href="` + url + `"></a>
-                                <p style="color:#666;">` + title + `</p>   
+                            <div class="col-md-7">
+                                <a href="` + url + `"> <p>` + title + `</p> </a>
                             </div>
                         </div>
                     `);
@@ -284,31 +262,64 @@
 
     {{-- Tìm kiếm  --}}
     <script type="text/javascript">
-        $('#keywords').keyup(function() {
-            var keywords = $(this).val();
+        // $('#keywords').keyup(function() {
+        //     var keywords = $(this).val();
 
-            if (keywords != '') {
-                var _token = $('input[name="_token"]').val();
+        //     if (keywords != '') {
+        //         var _token = $('input[name="_token"]').val();
 
-                $.ajax({
-                    url: "{{ url('timkiem-ajax') }}",
-                    method: "POST",
-                    data: {
-                        keywords: keywords,
-                        _token: _token
-                    },
-                    success: function(data) {
-                        $('#search_ajax').fadeIn();
-                        $('#search_ajax').html(data);
-                    }
-                });
-            } else {
-                $('#search_ajax').fadeOut();
-            }
-        });
-        $(document).on('click', '.li_timkiem_ajax', function() {
-            $('#keywords').val($(this).text());
-            $('#search_ajax').fadeOut();
+        //         $.ajax({
+        //             url: "{{ url('timkiem-ajax') }}",
+        //             method: "POST",
+        //             data: {
+        //                 keywords: keywords,
+        //                 _token: _token
+        //             },
+        //             success: function(data) {
+        //                 $('#search_ajax').fadeIn();
+        //                 $('#search_ajax').html(data);
+        //             }
+        //         });
+        //     } else {
+        //         $('#search_ajax').fadeOut();
+        //     }
+        // });
+        // $(document).on('click', '.li_timkiem_ajax', function() {
+        //     $('#keywords').val($(this).text());
+        //     $('#search_ajax').fadeOut();
+        // })
+
+        //search
+        $(document).ready(function() {
+            $('#keywords').keyup(function() {
+                $('result').html('');
+                var search = $('#keywords').val();
+                if (search != '') {
+                    $('#result').css('display', 'inherit');
+                    var expression = new RegExp(search, "i");
+                    $.getJSON('public/json/sach.json', function(data) {
+                        $.each(data, function(key, val) {
+                            if (val.tensach.search(expression) != -1) {
+                                $('#result').append(
+                                    '<li style="cursor:pointer; display: flex;" class="img-thumbnail list-group-item link-class"><div style="flex-direction: column; margin-left: 2px;"><h4 width="100%">' +
+                                    val.tensach +
+                                    '</h4><p class="limit-text text-muted">| ' +
+                                    val.tomtat + '</p></div></li>');
+                            }
+                        })
+                    })
+                } else {
+                    $('#result').css('display', 'none');
+                }
+            })
+
+            //lấy title searching
+            $('#result').on('click', 'li', function() {
+                var clickText = $(this).text().split('|');
+
+                $('#keywords').val($.trim(clickText[0]));
+                $('#result').html('');
+            })
         })
     </script>
     {{-- End Tìm kiếm  --}}
@@ -318,8 +329,10 @@
     <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,
-            margin: 10,
+            margin: 4,
+            autoplay: true,
             nav: true,
+            responsiveClass: true,
             responsive: {
                 0: {
                     items: 1

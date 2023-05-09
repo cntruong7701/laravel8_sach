@@ -1,0 +1,132 @@
+/* ul.mucluctab_sach {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+ul.mucluctab_sach li a {
+    color: #000;
+    text-transform: uppercase;
+}
+
+.switch_color {
+    background: #181818;
+    color: #fff;
+}
+
+.switch_color_light {
+    background: #181818 !important;
+    color: #333;
+}
+
+.noidung_color {
+    color: #000;
+} */
+
+/* seach */
+.search-wrap {
+    position: absolute;
+    z-index: 10;
+}
+
+/* giới hạn từ */
+.limit-text {
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 3;
+    height: 75px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.limit-text-2 {
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 3;
+    height: 75px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* card */
+.cstm-height-card .card-img-top {
+    height: 100px;
+    object-fit: cover;
+}
+
+/* tag */
+.tagcloud05 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tagcloud05 ul li {
+    display: inline-block;
+    margin: 0 0 0.3em 1em;
+    padding: 0;
+}
+
+.tagcloud05 ul li a {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 1em;
+    background-color: #3498db;
+    border-radius: 0 3px 3px 0;
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.tagcloud05 ul li a::before {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-color: transparent #3498db transparent transparent;
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.tagcloud05 ul li a::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 2;
+    display: block;
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+.tagcloud05 ul li span {
+    display: block;
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tagcloud05 ul li a:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.tagcloud05 ul li a:hover::before {
+    border-right-color: #555;
+}

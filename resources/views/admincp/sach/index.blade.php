@@ -36,7 +36,7 @@
                                 @foreach ($list_book as $key => $Sach)
                                     <tr>
                                         <th scope="row">{{ $key }}</th>
-                                        <td><img src="{{ asset('public/uploads/sach/' . $Sach->hinhanh) }}" height="100"
+                                        <td><img src="{{ asset('/uploads/sach/' . $Sach->hinhanh) }}" height="100"
                                                 width="100" alt=""></td>
                                         <td>
                                             {{-- {{ $Sach->tensach }} --}}

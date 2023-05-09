@@ -182,21 +182,35 @@ class IndexController extends Controller
         return view('pages.chuong')->with(compact('danhmuc', 'mucluc', 'all_mucluc', 'next', 'previous', 'max', 'min', 'theloai', 'sach_breadcrumb'));
     }
 
-    public function timkiem(Request $request)
-    {
-        $data = $request->all();
-        $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
+    // public function timkiem(Request $request)
+    // {
+    //     $data = $request->all();
+    //     $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
 
-        $theloai = TheLoai::orderBy('id', 'DESC')->get();
+    //     $theloai = TheLoai::orderBy('id', 'DESC')->get();
         
-        $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+    //     $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
 
-        $tukhoa = $data['tukhoa'];
+    //     $tukhoa = $data['tukhoa'];
 
-        $sach = Sach::with('danhmuc', 'theloai')->where('tensach','LIKE', '%'.$tukhoa.'%')
-        ->orWhere('tomtat','LIKE', '%'.$tukhoa.'%')->orWhere('tacgia','LIKE', '%'.$tukhoa.'%')->get();
+    //     $sach = Sach::with('danhmuc', 'theloai')->where('tensach','LIKE', '%'.$tukhoa.'%')
+    //     ->orWhere('tomtat','LIKE', '%'.$tukhoa.'%')->orWhere('tacgia','LIKE', '%'.$tukhoa.'%')->get();
 
-        return view('pages.timkiem')->with(compact('danhmuc','sach', 'theloai', 'tukhoa', 'slide_sach'));
+    //     return view('pages.timkiem')->with(compact('danhmuc','sach', 'theloai', 'tukhoa', 'slide_sach'));
+    // }
+
+    public function search()
+    {
+        if (isset($_GET['tukhoa'])) {
+            $search = $_GET['tukhoa'];
+            $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+            $theloai = TheLoai::orderBy('id', 'DESC')->get();
+            $sach = Sach::where('tensach', 'LIKE','%'.$search.'%')->paginate(10);
+            return view('pages.timkiem', compact('search', 'sach', 'danhmuc', 'theloai'));
+        }else{
+            redirect()->to('/');
+        }
+        
     }
 
     public function tag($tag)

@@ -15,7 +15,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-3">
-                    <img class="card-img-top" src="{{ asset('public/uploads/sach/' . $sach->hinhanh) }}" width="200"
+                    <img class="card-img-top" src="{{ asset('/uploads/sach/' . $sach->hinhanh) }}" width="200"
                         alt="">
                 </div>
                 <div class="col-md-9">
@@ -69,7 +69,7 @@
                                 </a>
                             </li>
                         @else
-                            <li><a href="" class="btn btn-danger">Hiện tại chưa có mục lục</a></li>
+                            <li><a href="" class="btn btn-danger">Hiện tại chưa cập nhật nội dung</a></li>
                         @endif
 
                     </ul>
@@ -79,79 +79,6 @@
                 <p>{{ $sach->tomtat }}</p>
             </div>
             <hr>
-            <style>
-                .tagcloud05 ul {
-                    margin: 0;
-                    padding: 0;
-                    list-style: none;
-                }
-
-                .tagcloud05 ul li {
-                    display: inline-block;
-                    margin: 0 0 .3em 1em;
-                    padding: 0;
-                }
-
-                .tagcloud05 ul li a {
-                    position: relative;
-                    display: inline-block;
-                    height: 30px;
-                    line-height: 30px;
-                    padding: 0 1em;
-                    background-color: #3498db;
-                    border-radius: 0 3px 3px 0;
-                    color: #fff;
-                    font-size: 13px;
-                    text-decoration: none;
-                    -webkit-transition: .2s;
-                    transition: .2s;
-                }
-
-                .tagcloud05 ul li a::before {
-                    position: absolute;
-                    top: 0;
-                    left: -15px;
-                    content: '';
-                    width: 0;
-                    height: 0;
-                    border-color: transparent #3498db transparent transparent;
-                    border-style: solid;
-                    border-width: 15px 15px 15px 0;
-                    -webkit-transition: .2s;
-                    transition: .2s;
-                }
-
-                .tagcloud05 ul li a::after {
-                    position: absolute;
-                    top: 50%;
-                    left: 0;
-                    z-index: 2;
-                    display: block;
-                    content: '';
-                    width: 6px;
-                    height: 6px;
-                    margin-top: -3px;
-                    background-color: #fff;
-                    border-radius: 100%;
-                }
-
-                .tagcloud05 ul li span {
-                    display: block;
-                    max-width: 100px;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                }
-
-                .tagcloud05 ul li a:hover {
-                    background-color: #555;
-                    color: #fff;
-                }
-
-                .tagcloud05 ul li a:hover::before {
-                    border-right-color: #555;
-                }
-            </style>
             <p>Từ khóa tìm kiếm
                 @php
                     $tukhoa = explode(',', $sach->tukhoa);
@@ -190,18 +117,15 @@
                 @foreach ($cungdanhmuc as $key => $value)
                     <div class="col-md-3">
                         <div class="card shadow-sm">
-                            <img src="{{ asset('public/uploads/sach/' . $value->hinhanh) }}" class="w-100" alt="">
+                            <img src="{{ asset('/uploads/sach/' . $value->hinhanh) }}" class="w-100" alt="">
                             <div class="card-body">
                                 <h5>{{ $value->tensach }}</h5>
-                                <p class="card-text">{{ $value->tomtat }}</p>
+                                <p class="card-text limit-text-2">{{ $value->tomtat }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a href="{{ url('doc-sach/' . $value->slug_sach) }}"
                                             class="btn btn-sm btn-outline-secondary">Đọc</a>
-                                        <a href="" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye">
-                                                4020</i></a>
                                     </div>
-                                    <small class="text-muted">9 mins ago</small>
                                 </div>
                             </div>
                         </div>
@@ -212,36 +136,18 @@
         </div>
         <div class="col-md-3">
             <h3 class="title_sach">Sách yêu thích</h3>
-            <div id="yeuthich"></div>
+            <div id="yeuthich" class="row"></div>
             <h4>Sách Nổi Bật</h4>
             <div class="row">
                 @foreach ($sachnoibat as $key => $noibat)
                     <div class="row mt-2">
                         <div class="col-md-5">
-                            <img src="{{ asset('public/uploads/sach/' . $noibat->hinhanh) }}" width="100%"
+                            <img src="{{ asset('/uploads/sach/' . $noibat->hinhanh) }}" width="100%"
                                 alt="">
                         </div>
                         <div class="col-md-7 sidebar">
                             <a href="{{ url('doc-sach/' . $noibat->slug_sach) }}">
                                 <p>{{ $noibat->tensach }}</p>
-                                <p><i class="fa fa-eye">4020</i></p>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <h4>Sách Xem Nhiều</h4>
-            <div class="row">
-                @foreach ($sachxemnhieu as $key => $xemnhieu)
-                    <div class="row mt-2">
-                        <div class="col-md-5">
-                            <img src="{{ asset('public/uploads/sach/' . $xemnhieu->hinhanh) }}" width="100%"
-                                alt="">
-                        </div>
-                        <div class="col-md-7 sidebar">
-                            <a href="{{ url('doc-sach/' . $xemnhieu->slug_sach) }}">
-                                <p>{{ $xemnhieu->tensach }}</p>
-                                <p><i class="fa fa-eye">4020</i></p>
                             </a>
                         </div>
                     </div>

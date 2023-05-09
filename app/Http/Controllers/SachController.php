@@ -8,6 +8,7 @@ use App\Models\DanhMuc;
 use App\Models\Sach;
 use App\Models\TheLoai;
 use App\Models\Thuocdanh;
+use File;
 
 class SachController extends Controller
 {
@@ -20,7 +21,13 @@ class SachController extends Controller
     {
         //
         $list_book = Sach::with('danhmuc', 'theloai')->orderBy('id','DESC')->get();
-        //dd($sach);
+        
+        //tạo file json để tìm kiếm
+        $path = public_path() . "/json/";
+        if (!is_dir($path)){
+            mkdir($path, 0777, true);
+        }
+        File::put($path.'sach.json', json_encode($list_book));
         return view('admincp.sach.index')->with(compact('list_book'));
     }
 

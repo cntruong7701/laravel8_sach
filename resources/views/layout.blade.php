@@ -9,7 +9,7 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sach.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -17,9 +17,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <style type="text/css">
-
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -222,7 +220,7 @@
     {{-- end localStrorage Sách yêu thích --}}
 
     {{-- Lưu màu vào theme --}}
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             if (localStorage.getItem('switch_color') !== null) {
                 const data = localStorage.getItem('switch_color');
@@ -256,7 +254,7 @@
                 }
             })
         })
-    </script>
+    </script> --}}
     {{-- end Lưu màu vào theme --}}
 
 
@@ -297,7 +295,7 @@
                 if (search != '') {
                     $('#result').css('display', 'inherit');
                     var expression = new RegExp(search, "i");
-                    $.getJSON('public/json/sach.json', function(data) {
+                    $.getJSON('/laravel8/laravel-book/public/json/sach.json', function(data) {
                         $.each(data, function(key, val) {
                             if (val.tensach.search(expression) != -1) {
                                 $('#result').append(

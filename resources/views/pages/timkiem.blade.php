@@ -27,7 +27,7 @@
                     </div>
                 @else
                     @foreach ($sach as $key => $value)
-                        <div class="col">
+                        {{-- <div class="col">
                             <div class="card shadow-sm">
                                 <img src="{{ asset('public/uploads/sach/' . $value->hinhanh) }}" class="w-100"
                                     alt="">
@@ -42,6 +42,25 @@
                                                     4020</i></a>
                                         </div>
                                         <small class="text-muted">9 mins ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-md-4">
+                                        <img src="{{ asset('/uploads/sach/' . $value->hinhanh) }}" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $value->tensach }}</h5>
+                                            <p class="card-text limit-text">{{ $value->tomtat }}</p>
+                                            <div class="btn-group">
+                                                <a href="{{ url('doc-sach/' . $value->slug_sach) }}"
+                                                    class="btn btn-sm btn-outline-secondary">Đọc</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

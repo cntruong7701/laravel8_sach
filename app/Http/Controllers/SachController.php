@@ -21,6 +21,8 @@ class SachController extends Controller
     {
         //
         $list_book = Sach::with('danhmuc', 'theloai')->orderBy('id','DESC')->get();
+        $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
+        $theloai = TheLoai::orderBy('id', 'DESC')->get();
         
         //tạo file json để tìm kiếm
         $path = public_path() . "/json/";
@@ -28,7 +30,7 @@ class SachController extends Controller
             mkdir($path, 0777, true);
         }
         File::put($path.'sach.json', json_encode($list_book));
-        return view('admincp.sach.index')->with(compact('list_book'));
+        return view('admincp.sach.index')->with(compact('list_book','danhmuc','theloai'));
     }
 
     /**
@@ -98,13 +100,15 @@ class SachController extends Controller
         $Sach->created_at = Carbon::now('Asia/Ho_Chi_Minh');//sử dụng ngày format theo muối h của của việt nam
         //them anh vao folder
         $get_image = $data['hinhanh'];
-        $path = 'public/uploads/sach/';
-        $get_name_image = $get_image->getClientOriginalName();
-        $name_image = current(explode('.', $get_name_image));
-        $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-        $get_image->move($path,$new_image);
+        $path = 'uploads/sach/';
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.', $get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move($path,$new_image);
 
-        $Sach->hinhanh = $new_image;
+            $Sach->hinhanh = $new_image;
+        }
 
         $Sach->save();
         //$Sach->thuocnhieudanhmuc()->attach($data['danhmuc']);
@@ -184,11 +188,11 @@ class SachController extends Controller
         //them anh vao folder
         $get_image = $request->hinhanh;
         if ($get_image) {
-            $path = 'public/uploads/sach/' .$Sach->hinhanh;
+            $path = 'uploads/sach/' .$Sach->hinhanh;
             if (file_exists($path)) {
                 unlink($path);
             }
-            $path = 'public/uploads/sach/';
+            $path = 'uploads/sach/';
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.', $get_name_image));
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
@@ -211,7 +215,7 @@ class SachController extends Controller
     {
         //
         $sach = Sach::find($id);
-        $path = 'public/uploads/sach/' .$sach->hinhanh;
+        $path = 'uploads/sach/' .$sach->hinhanh;
         if (file_exists($path)) {
             unlink($path);
         }

@@ -68,7 +68,7 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Hình ảnh</label>
                                 <input type="file" class="form-control-file" value="{{old('hinhanh')}}" name="hinhanh">
-                                <img src="{{asset('public/uploads/sach/'.$book->hinhanh)}}" height="200" width="200" alt="">
+                                <img src="{{asset('uploads/sach/'.$book->hinhanh)}}" height="200" width="200" alt="">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Kích hoạt sách</label>

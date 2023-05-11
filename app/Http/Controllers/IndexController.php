@@ -96,9 +96,12 @@ class IndexController extends Controller
         $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
 
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
-        $sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->get();
+        
+        $sachnoibat = Sach::where('sach_noibat', 1)->take(10)->get();
 
-        return view('pages.home')->with(compact('danhmuc','sach', 'theloai', 'slide_sach'));
+        $sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(10)->get();
+
+        return view('pages.home')->with(compact('danhmuc','sach', 'theloai', 'slide_sach', 'sachnoibat'));
     }
     
     public function danhmuc($slug)

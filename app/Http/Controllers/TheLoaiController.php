@@ -44,7 +44,7 @@ class TheLoaiController extends Controller
                 'tentheloai' => 'required|unique:theloai|max:255',
                 'slug_theloai' => 'required|unique:theloai|max:255',
                 
-                'mota' => 'required',
+                'mota' => 'required|max:255',
                 'kichhoat' => 'required',
             ],
             [
@@ -53,6 +53,7 @@ class TheLoaiController extends Controller
                 'slug_theloai.unique' => 'Slug thể loại đã tồn tại, Vui lòng nhập slug thể loại khác!',
                 'slug_theloai.required' => 'Vui lòng nhập slug thể loại!',
                 'mota.required' => 'Vui lòng nhập mô tả thể loại!',
+                'mota.max' => 'Mô tả quá dài!',
             ]
         );
         // dd($data);

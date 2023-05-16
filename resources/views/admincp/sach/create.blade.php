@@ -49,6 +49,10 @@
                                 <label for="exampleInputEmail1" class="form-label">Tóm tắt sách</label>
                                 <textarea class="form-control" name="tomtat" rows="5" style="resize: none;"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Số Tập</label>
+                                <input type="text" class="form-control" value="{{ old('sochuong') }}" name="sochuong">
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Danh mục sách:</label><br>
                                 <select class="form-select form-control" name="danhmuc" id="inputGroupSelect02">

@@ -8,6 +8,7 @@ use App\Models\Sach;
 use App\Models\MucLuc;
 use App\Models\TheLoai;
 use App\Models\Info;
+use App\Models\Comments;
 
 class IndexController extends Controller
 {
@@ -99,9 +100,11 @@ class IndexController extends Controller
         
         $sachnoibat = Sach::where('sach_noibat', 1)->take(10)->get();
 
+        $sachxemnhieu = Sach::where('sach_noibat', 2)->take(10)->get();
+
         $sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(10)->get();
 
-        return view('pages.home')->with(compact('danhmuc','sach', 'theloai', 'slide_sach', 'sachnoibat'));
+        return view('pages.home')->with(compact('danhmuc','sach', 'theloai', 'slide_sach', 'sachnoibat', 'sachxemnhieu'));
     }
     
     public function danhmuc($slug)
@@ -146,6 +149,15 @@ class IndexController extends Controller
 
         $sach = Sach::with('danhmuc', 'theloai')->where('slug_sach', $slug)->where('kichhoat','0')->first();
 
+        //show comments
+        $comments = Comments::where('sach_id', $sach->id)->get();
+        
+        // increase book views
+        $view = $sach->view;
+        $view = $view + 1;
+        $sach->view = $view;
+        $sach->save();
+
         $sachnoibat = Sach::where('sach_noibat', 1)->take(10)->get();
         $sachxemnhieu = Sach::where('sach_noibat', 2)->take(10)->get();
 
@@ -157,7 +169,10 @@ class IndexController extends Controller
 
         $cungdanhmuc = Sach::with('danhmuc', 'theloai')->where('danhmuc_id', $sach->danhmuc->id)->whereNotIn('id', [$sach->id])->get();
 
-        return view('pages.Sach')->with(compact('danhmuc', 'sach', 'mucluc', 'cungdanhmuc', 'mucluc_dau', 'mucluc_cuoi', 'theloai', 'sachnoibat', 'sachxemnhieu'));
+        $chapter_current_list = MucLuc::with('sach')->where('sach_id',$sach->id)->get();
+        $chapter_current_list_count = $chapter_current_list->count();
+
+        return view('pages.Sach')->with(compact('danhmuc', 'sach','comments', 'mucluc', 'cungdanhmuc', 'mucluc_dau', 'mucluc_cuoi', 'theloai', 'sachnoibat', 'sachxemnhieu', 'chapter_current_list', 'chapter_current_list_count'));
     }
 
     public function xemmucluc($slug){

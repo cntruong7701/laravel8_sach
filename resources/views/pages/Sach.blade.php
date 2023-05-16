@@ -52,8 +52,26 @@
                             <a href="{{ url('the-loai/' . $sach->theloai->slug_theloai) }}"
                                 class="text-decoration-none">{{ $sach->theloai->tentheloai }}</a>
                         </li>
-                        <li>Số chapter: 300</li>
-                        <li>Lượt xem: 2040</li>
+                        <li>
+                            Số chapter: 
+                            {{ $chapter_current_list_count }}/{{ $sach->sochuong }} -
+                                @if ($chapter_current_list_count == $sach->sochuong)
+                                    <span>Hoàn Thành</span>
+                                @else
+                                    <span>Đang Cập Nhật</span>
+                                @endif    
+                        </li>
+                        <li>
+                            Lượt xem: 
+                            @if ($sach->view > 0)
+                                    {{ $sach->view }} Lượt quan tâm
+                                @else
+                                    @php
+                                        echo rand(100, 9999);
+                                    @endphp
+                                    Lượt quan tâm
+                                @endif    
+                        </li>
                         <li><a href="#" class="text-decoration-none">Xem mục lục</a></li>
                         @if ($mucluc_dau)
                             <li>
@@ -111,8 +129,63 @@
                 @endif
 
             </ul>
-            <div class="fb-comments" data-href="{{ \URL::current() }}" data-width="" data-numposts="10"></div>
-            <h4>Sách liên quan</h4>
+            <hr>
+            <h2 class="mt-3 text-4xl leading-10 tracking-tight font-bold text-gray-900 text-center">Bình Luận</h2>
+            <div class="col-12">
+                <form action="{{ url('doc-sach/' . $sach->slug_sach . '/comments') }}" method="POST"
+                    class="mb-0 d-flex flex-column">
+                    @csrf
+                    <label for="exampleInputEmail1" class="form-label">Tên Sách</label>
+                    <select class="form-select form-control" name="tenSach" id="inputGroupSelect02">
+                        <option value="{{ $sach->id }}">{{ $sach->tensach }}</option>
+                    </select>
+                    <label for="author" class="font-medium text-gray-700">Tên</label>
+                    <input type="text" name="author"
+                        class="mt-1 py-2 px-3 block w-full border border-light rounded shadow-sm"
+                        value="{{ old('author') }}" required>
+
+                    <label for="author" class="mt-3 block font-medium text-gray-700">Nội dung</label>
+                    <textarea name="text" class="mt-1 py-2 px-3 block w-full border border-light rounded shadow-sm" required>{{ old('text') }}</textarea>
+
+                    <button type="submit" style="width: 10%"
+                        class="mt-3 py-2 px-4 border border-light font-medium rounded text-white bg-info">Post</button>
+
+                </form>
+            </div>
+            {{-- <div class="fb-comments" data-href="{{ \URL::current() }}" data-width="" data-numposts="10"></div> --}}
+            {{-- Show Comment --}}
+            <div class="col-12 mt-3">
+                @foreach ($comments as $comment)
+                <div class="container">
+                    <div class="review-list">
+                        <ul>
+                            <li>
+                                <div class="d-flex">
+                                    <div class="left">
+                                        <span>
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
+                                        </span>
+                                    </div>
+                                    <div class="right">
+                                        <h4>
+                                            {{ $comment->author }}
+                                        </h4>
+                                        <div class="review-description">
+                                            <p>
+                                                {{ $comment->text }}
+                                            </p>
+                                        </div>
+                                        <span class="publish py-3 d-inline-block w-100">{{ $comment->created_at->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <hr>
+            <h4 class="mt-3">Sách liên quan</h4>
             <div class="row">
                 @foreach ($cungdanhmuc as $key => $value)
                     <div class="col-md-3">
@@ -142,8 +215,7 @@
                 @foreach ($sachnoibat as $key => $noibat)
                     <div class="row mt-2">
                         <div class="col-md-5">
-                            <img src="{{ asset('/uploads/sach/' . $noibat->hinhanh) }}" width="100%"
-                                alt="">
+                            <img src="{{ asset('/uploads/sach/' . $noibat->hinhanh) }}" width="100%" alt="">
                         </div>
                         <div class="col-md-7 sidebar">
                             <a href="{{ url('doc-sach/' . $noibat->slug_sach) }}">

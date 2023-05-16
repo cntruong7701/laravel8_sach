@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\SachController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\MucLucController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TheLoaiController;
@@ -25,6 +26,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', [IndexController::class, 'home']);
 Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuc']);
 Route::get('/doc-sach/{slug}', [IndexController::class, 'docsach']);
+//add comments
+Route::post('/doc-sach/{slug}/comments', [CommentsController::class, 'store']);
 Route::get('/xem-mucluc/{slug}', [IndexController::class, 'xemmucluc']);
 Route::get('/the-loai/{slug}', [IndexController::class, 'theloai']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);

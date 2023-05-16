@@ -1,0 +1,47 @@
+/* comment */
+body {
+    margin-top: 20px;
+    background: #eee;
+}
+.review-list ul li .left span {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+.review-list ul li .left {
+    flex: none;
+    max-width: none;
+    margin: 0 10px 0 0;
+}
+.review-list ul li .left span img {
+    border-radius: 50%;
+}
+.review-list ul li .right h4 {
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+}
+.review-list ul li {
+    border-bottom: 1px solid #dadbdd;
+    padding: 0 0 30px;
+    margin: 0 0 30px;
+}
+.review-list ul li .right {
+    flex: auto;
+}
+.review-list ul li .review-description {
+    margin: 20px 0 0;
+}
+.review-list ul li .review-description p {
+    font-size: 14px;
+    margin: 0;
+}
+.review-list ul li .publish {
+    font-size: 13px;
+    color: #95979d;
+}
+ul,
+ul li {
+    list-style: none;
+    margin: 0px;
+}

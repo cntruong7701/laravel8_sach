@@ -65,6 +65,7 @@ class SachController extends Controller
                 'tacgia' => 'required',
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
+                'sochuong' => 'required',
                 'theloai' => 'required',
                 'tukhoa' => 'required',
                 'sachnoibat' => 'required',
@@ -80,13 +81,14 @@ class SachController extends Controller
                 'hinhanh.dimensions' => 'Kích thước hình ảnh quá lớn!',
             ]
         );
-        // dd($data);
+        //dd($data);
         $Sach = new Sach();
         $Sach->tenSach = $data['tenSach'];
         $Sach->tacgia = $data['tacgia'];
         $Sach->slug_sach = $data['slug_sach'];
         $Sach->theloai_id = $data['theloai'];
         $Sach->tomtat = $data['tomtat'];
+        $Sach->sochuong = $data['sochuong'];
         $Sach->kichhoat = $data['kichhoat'];
         $Sach->danhmuc_id = $data['danhmuc'];
         $Sach->tukhoa = $data['tukhoa'];
@@ -160,6 +162,7 @@ class SachController extends Controller
                 'tomtat' => 'required',
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
+                'sochuong' => 'required',
                 'theloai' => 'required',
                 'tukhoa' => 'required',
                 'sachnoibat' => 'required',
@@ -178,6 +181,7 @@ class SachController extends Controller
         $Sach->slug_sach = $data['slug_sach'];
         $Sach->theloai_id = $data['theloai'];
         $Sach->tomtat = $data['tomtat'];
+        $Sach->sochuong = $data['sochuong'];
         $Sach->kichhoat = $data['kichhoat'];
         $Sach->danhmuc_id = $data['danhmuc'];
         $Sach->tukhoa = $data['tukhoa'];

@@ -24,4 +24,17 @@ class CommentsController extends Controller
 
         return back();
     }
+
+    public function index()
+    {
+        $comment = Comments::orderBy('id', 'DESC')->get();
+        return view('admincp.comment.index')->with(compact('comment'));
+    }
+
+    public function destroy($id)
+    {
+        //
+        Comments::find($id)->delete();
+        return redirect()->back()->with('status', 'Xóa thành công');
+    }
 }

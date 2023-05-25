@@ -180,6 +180,11 @@ class IndexController extends Controller
 
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
 
+        $comment_sach = Sach::with('danhmuc', 'theloai')->where('kichhoat','0')->first();
+
+        //show comments
+        $comments = Comments::where('sach_id', $comment_sach->id)->get();
+
         $sach = MucLuc::where('slug_mucluc', $slug)->first();
 
         //breadcrumb 
@@ -197,7 +202,7 @@ class IndexController extends Controller
         $min = MucLuc::where('sach_id', $sach->sach_id)->orderBy('id', 'ASC')->first();
 
         $previous = MucLuc::where('sach_id', $sach->sach_id)->where('id', '<', $mucluc->id)->max('slug_mucluc');
-        return view('pages.chuong')->with(compact('danhmuc', 'mucluc', 'all_mucluc', 'next', 'previous', 'max', 'min', 'theloai', 'sach_breadcrumb'));
+        return view('pages.chuong')->with(compact('comment_sach','comments','danhmuc', 'mucluc', 'all_mucluc', 'next', 'previous', 'max', 'min', 'theloai', 'sach_breadcrumb'));
     }
 
     // public function timkiem(Request $request)

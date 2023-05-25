@@ -113,6 +113,19 @@
                         </div>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#commentIndex"
+                        aria-expanded="true" aria-controls="commentIndex">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        <span>Comments</span>
+                    </a>
+                    <div id="commentIndex" class="collapse" aria-labelledby="headingPages"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('comment.index') }}">Liệt Kê</a>
+                        </div>
+                    </div>
+                </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
                 <!-- Sidebar Toggler (Sidebar) -->

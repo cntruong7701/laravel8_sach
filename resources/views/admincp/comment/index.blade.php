@@ -14,6 +14,7 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Tên người dùng</th>
+                                    <th scope="col">Tên Sách</th>
                                     <th scope="col">nội dung</th>
                                     <th scope="col">Quản ký</th>
                                 </tr>
@@ -23,6 +24,9 @@
                                     <tr>
                                         <th scope="row">{{ $key }}</th>
                                         <td>{{ $com->author }}</td>
+                                        <td>
+                                            {{ $com->sach->tensach}}
+                                        </td>
                                         <td>{{ $com->text}}</td>
                                         
                                         <td>

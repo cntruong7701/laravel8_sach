@@ -14,7 +14,7 @@ class DanhMucController extends Controller
      */
     public function index()
     {
-        //
+
         $danhSach = DanhMuc::orderBy('id', 'DESC')->get();
         return view('admincp.danhmuc.index')->with(compact('danhSach'));
     }

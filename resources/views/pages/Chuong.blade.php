@@ -19,6 +19,21 @@
         <h4>{{ $mucluc->sach->tensach }}</h4>
         <p>Chương hiện tại: {{ $mucluc->tieude }}</p>
         <div class="col-md-5">
+            <div class="form-group">
+                <label for="" class="">Chọn chương:</label>
+                <select name="select-mucluc" aria-label=".form-select-lg example"
+                    class="form-select form-select-lg select-mucluc">
+                    @foreach ($all_mucluc as $key => $muc)
+                        <option value="{{ url('xem-mucluc/' . $muc->slug_mucluc) }}">{{ $muc->tieude }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+        </div>
+        <div class="noidungchuong">
+            {!! $mucluc->noidung !!}
+        </div>
+        <div class="col-md-5">
             <style type="text/css">
                 .isDisabled {
                     color: currentColor;
@@ -41,30 +56,16 @@
                         class="btn btn-primary my-3 {{ $mucluc->id == $max->id ? 'isDisabled' : '' }}">Tập sau</a></p>
             </div>
         </div>
-        <div class="noidungchuong">
-            {!! $mucluc->noidung !!}
-        </div>
-        <div class="col-md-5">
-            <div class="form-group">
-                <label for="" class="">Chọn chương:</label>
-                <select name="select-mucluc" aria-label=".form-select-lg example"
-                    class="form-select form-select-lg select-mucluc">
-                    @foreach ($all_mucluc as $key => $muc)
-                        <option value="{{ url('xem-mucluc/' . $muc->slug_mucluc) }}">{{ $muc->tieude }}</option>
-                    @endforeach
 
-                </select>
-            </div>
-        </div>
         <hr>
         <h2 class="mt-3 text-4xl leading-10 tracking-tight font-bold text-gray-900 text-center">Bình Luận</h2>
-        <div class="col-12">
-            <form action="{{ url('xem-mucluc/'. $comment_sach->slug_sach . '/comments') }}" method="POST"
+        {{-- <div class="col-12">
+            <form action="{{ url('xem-mucluc/' . $comment_sach->slug_sach . '/comments') }}" method="POST"
                 class="mb-0 d-flex flex-column">
                 @csrf
                 <label for="exampleInputEmail1" class="form-label">Tên Sách</label>
                 <select class="form-select form-control" name="tenSach" id="inputGroupSelect02">
-                    <option value="{{ $comment_sach->id }}">{{ $comment_sach->tensach }}</option>
+                    <option value="{{ $comment_sach->sach }}">{{ $comment_sach->tensach }}</option>
                 </select>
                 <label for="author" class="font-medium text-gray-700">Tên</label>
                 <input type="text" name="author"
@@ -78,10 +79,10 @@
                     class="mt-3 py-2 px-4 border border-light font-medium rounded text-white bg-info">Post</button>
 
             </form>
-        </div>
+        </div> --}}
         {{-- <div class="fb-comments" data-href="{{ \URL::current() }}" data-width="" data-numposts="10"></div> --}}
         {{-- Show Comment --}}
-        <div class="col-12 mt-3">
+        {{-- <div class="col-12 mt-3">
             @foreach ($comments as $comment)
                 <div class="container">
                     <div class="review-list">
@@ -112,7 +113,7 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
         <div>
             <h3>Lưu và chia sẻ:</h3>
             <div class="fb-share-button" data-href="{{ \URL::current() }}" data-layout="button_count" data-size="small">

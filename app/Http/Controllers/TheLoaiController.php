@@ -44,7 +44,7 @@ class TheLoaiController extends Controller
                 'tentheloai' => 'required|unique:theloai|max:255',
                 'slug_theloai' => 'required|unique:theloai|max:255',
                 
-                'mota' => 'required|max:255',
+                'mota' => 'required|max:1000',
                 'kichhoat' => 'required',
             ],
             [

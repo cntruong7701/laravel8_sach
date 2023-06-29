@@ -180,10 +180,12 @@ class IndexController extends Controller
 
         $danhmuc = DanhMuc::orderBy('id', 'DESC')->get();
 
-        $comment_sach = Sach::with('danhmuc', 'theloai')->where('kichhoat','0')->first();
-
+        //$sach = Sach::with('danhmuc', 'theloai')->where('slug_sach', $slug)->where('kichhoat','0')->first();
+        $sach = MucLuc::with('sach')->where('slug_mucluc', $slug)->first();
+        $comment_sach = Sach::with('danhmuc', 'theloai')->where('slug_sach', $slug)->where('kichhoat','0')->first();
+        //dd($comment_sach);
         //show comments
-        $comments = Comments::where('sach_id', $comment_sach->id)->get();
+        $comments = Comments::with('sach')->where('sach_id', $sach->sach->id)->get();
 
         $sach = MucLuc::where('slug_mucluc', $slug)->first();
 
@@ -238,16 +240,7 @@ class IndexController extends Controller
 
     public function tag($tag)
     {
-        $info = Info::find(1);
         $title = 'Tìm kiếm tags';
-
-        //seo
-        // $meta_desc = 'Tìm kiếm tags';
-        // $meta_keywords = 'Tìm kiếm tags';
-        // $url_canonical = \URL::current();
-        // $og_image = url('public/upload/logo' .$info->logo);
-        // $link_icon = url('public/upload/logo' .$info->logo);
-        //end seo
 
         $slide_sach = Sach::orderBy('id', 'DESC')->where('kichhoat', '0')->take(8)->get();
 
@@ -266,7 +259,7 @@ class IndexController extends Controller
             }
         )->paginate(12);
         
-        return view('pages.tag')->with(compact('danhmuc', 'sach','theloai','slide_sach', 'tag','info',
+        return view('pages.tag')->with(compact('danhmuc', 'sach','theloai','slide_sach', 'tag',
         'title'));
     }
 }

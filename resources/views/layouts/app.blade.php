@@ -117,7 +117,7 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#commentIndex"
                         aria-expanded="true" aria-controls="commentIndex">
                         <i class="fa fa-comments" aria-hidden="true"></i>
-                        <span>Comments</span>
+                        <span>Bình Luận</span>
                     </a>
                     <div id="commentIndex" class="collapse" aria-labelledby="headingPages"
                         data-parent="#accordionSidebar">

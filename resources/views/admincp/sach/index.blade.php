@@ -121,8 +121,9 @@
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Sách nổi
-                                                            bật</label>
+                                                        <label for="exampleInputEmail1" class="form-label">
+                                                            Sách nổi bật
+                                                        </label>
                                                         <select class="form-select form-control" name="sachnoibat"
                                                             id="inputGroupSelect02">
                                                             <option value="0">Sách mới</option>
